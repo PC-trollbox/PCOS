@@ -32,58 +32,6 @@ footcen {
         margin-right: -50%;
 	   transform: translate(-50%, -50%) }
 	  </style>
-	  <style>
-
-/*!
- * three-dots - v0.2.0
- * CSS loading animation made by single element.
- * Dot-Flashing only!
- * https://nzbin.github.io/three-dots/
- *
- * Copyright (c) 2018 nzbin
- * Released under MIT License
- */
-@charset "UTF-8";
-/**
- * ==============================================
- * Dot Flashing
- * ==============================================
- */
-.dot-flashing {
-  background-color: gray;
-  color: gray;
-  animation: dot-flashing 0.5s infinite linear alternate;
-  animation-delay: .5s;
-}
-
-.dot-flashing::before, .dot-flashing::after {
-  content: '';
-}
-
-.dot-flashing::before {
-  background-color: gray;
-  color: gray;
-  animation: dot-flashing 0.5s infinite alternate;
-  animation-delay: 0s;
-}
-
-.dot-flashing::after {
-  background-color: gray;
-  color: gray;
-  animation: dot-flashing 1s infinite alternate;
-  animation-delay: 1s;
-}
-
-@keyframes dot-flashing {
-  0% {
-    background-color: gray;
-  }
-  50%,
-  100% {
-    background-color: white;
-  }
-}
-	  </style>
    </head>
    <body style="background: black; color: white; font-family: monospace;">	
 	   <centeralize>
@@ -134,8 +82,28 @@ eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to
 		     document.body.innerHTML = ""
 document.body.innerHTML = `	   <centeralize>
 		   </strong>PC laptop<strong>
-	   </centeralize><footcen><div class="dot-flashing"></div><br>Powered by <strong>PCOS</strong></footcen>`
+	   </centeralize><footcen><label id="s"></label><br>Powered by <strong>PCOS</strong></footcen>`
+euu()
 	     }, 3000)
+function euu(){
+	if (!s.innerHTML.includes("label")) s.innerHTML = "<label style='color: white' id=d>.</label> <label id=o>.</label> <label id=t>.</label>"
+	if (d.style.color == "white"){
+		d.style = "color: gray;"
+		o.style = "color: white;"
+		t.style = "color: gray;"
+	} 
+		if (o.style.color == "white"){
+		d.style = "color: gray;"
+		o.style = "color: gray;"
+		t.style = "color: white;"
+	} 
+		if (t.style.color == "white"){
+		d.style = "color: white;"
+		o.style = "color: gray;"
+		t.style = "color: gray;"
+	} 
+	setTimeout(euu, 500)
+}	     
 	   </script>
    </body>
 </html>
