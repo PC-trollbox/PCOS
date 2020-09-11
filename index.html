@@ -112,24 +112,25 @@ document.body.innerHTML = `	   <centeralize>
 		   </strong>PC laptop<strong>
 	   </centeralize><footcen><progress></progress><br>Powered by <strong>PCOS</strong></footcen>`
 	     }, 3000)
+	     if (!document.hasFocus()) document.body.onblur()
 	     stron = setInterval(function(){
 		     try{
-			     if (!document.hasFocus()){
-				     if (!saveCute) saveCute = document.body.innerHTML
-				     document.body.innerHTML="Enter password to confirm<br><br><input value='Please activate page' disabled></input><br><br><b>You are entering SudoActivate mode.</b>"
-			     }else{
-				     if (saveCute!==null) document.body.innerHTML = saveCute
-				     saveCute = null;
 		     if (!document.fullscreenElement) document.body.requestFullscreen()
-			     }
-		     }catch{
-		     }
-	     })
-			   window.onbeforeunload = function(){
+			     window.onbeforeunload = function(){
 			   clearInterval(stron)
 			   document.exitFullscreen()
 			   return true
 			   }
+		     }catch{
+		     }
+	     })
+	     document.body.onblur = function(){
+saveCute = document.body.innerHTML
+				     document.body.innerHTML="Enter password to confirm<br><br><input value='Please activate page' disabled></input><br><br><b>You are entering SudoActivate mode."
+	     }
+	     document.body.onfocus = function(){
+		     document.body.innerHTML = saveCute
+	     }
 	   </script>
    </body>
 </html>
