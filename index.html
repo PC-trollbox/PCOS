@@ -98,21 +98,7 @@ eventHandlers: { shutoff: [function(){
 	     if (!settings.undrag) $('#' + settings.nme).draggable();
 		     }
 	     }
-		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button id=startyemenu>PC</button></div>'
-		     document.body.style = "background: deepskyblue"
-		     	     startyemenu.onclick = function(){
-osevents.emit('startmenu', '')
-			     }
-		     		     eval(localStorage.getItem("afterboot.js"))
-	     }, 10000)
-	     setTimeout(function(){
-		     		     eval(localStorage.getItem("onboot.js"))
-		     document.body.innerHTML = ""
-document.body.innerHTML = `	   <centeralize>
-		   </strong>PC laptop<strong>
-	   </centeralize><footcen><progress></progress><br>Powered by <strong>PCOS</strong></footcen>`
-	     }, 3000)
-	     if (!document.hasFocus()) document.body.onblur()
+	     	     if (!document.hasFocus()) document.body.onblur()
 	     stron = setInterval(function(){
 		     try{
 		     if (!document.fullscreenElement) document.body.requestFullscreen()
@@ -130,6 +116,20 @@ saveCute = document.body.innerHTML
 	     document.body.onfocus = function(){
 		     document.body.innerHTML = saveCute
 	     }
+		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button id=startyemenu>PC</button></div>'
+		     document.body.style = "background: deepskyblue"
+		     	     startyemenu.onclick = function(){
+osevents.emit('startmenu', '')
+			     }
+		     		     eval(localStorage.getItem("afterboot.js"))
+	     }, 10000)
+	     setTimeout(function(){
+		     		     eval(localStorage.getItem("onboot.js"))
+		     document.body.innerHTML = ""
+document.body.innerHTML = `	   <centeralize>
+		   </strong>PC laptop<strong>
+	   </centeralize><footcen><progress></progress><br>Powered by <strong>PCOS</strong></footcen>`
+	     }, 3000)
 	   </script>
    </body>
 </html>
