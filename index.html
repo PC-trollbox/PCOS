@@ -22,11 +22,6 @@ $('#resizeDiv').resizable();
 		     min.innerHTML = min.innerHTML + "<label onclick='restore(this)' id='"+h.id+"-hidden'>" + eval(h.id + "-name").innerText + "</label> | "
 		     h.hidden = true;
 	     }
-	     function restore(h){
-		     eval(h.innerHTML).hidden = false;
-		     eval(h.id).delete()
-		     
-	     }
 </script>
 	   <div id="min"><button>PC</button></div>
    </body>
