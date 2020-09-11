@@ -86,23 +86,29 @@ document.body.innerHTML = `	   <centeralize>
 euu()
 	     }, 3000)
 function euu(){
-	if (!s.innerHTML.includes("label")) s.innerHTML = "<label style='color: white' id=d>.</label> <label id=o>.</label> <label id=t>.</label>"
+	try{
+	if (!s.innerHTML.includes("label")) s.innerHTML = "<label style='color: white' id=d>O</label> <label id=o style='color: gray'>O</label> <label id=t style='color: gray'>O</label>"
 	if (d.style.color == "white"){
-		d.style = "color: gray;"
-		o.style = "color: white;"
-		t.style = "color: gray;"
+		d.style.color="gray";
+		o.style.color="white";
+		t.style.color="gray";
 	} 
 		if (o.style.color == "white"){
-		d.style = "color: gray;"
-		o.style = "color: gray;"
-		t.style = "color: white;"
+		d.style.color="gray;"
+		o.style.color="gray";
+		t.style.color="white";
 	} 
 		if (t.style.color == "white"){
-		d.style = "color: white;"
-		o.style = "color: gray;"
-		t.style = "color: gray;"
+		d.style.color="white";
+		o.style.color="gray";
+		t.style.color="gray;"
 	} 
-	setTimeout(euu, 500)
+	setTimeout(function(){euu()}, 1000)
+	}catch{
+		euu=undefined;
+		delete euu;
+		
+	}
 }	     
 	   </script>
    </body>
