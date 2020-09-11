@@ -114,10 +114,11 @@ document.body.innerHTML = `	   <centeralize>
 	     }, 3000)
 	     stron = setInterval(function(){
 		     try{
-			     if (document.hasFocus() !== true){
-				     if (!saveCute) saveCute = document.body
+			     if (!document.hasFocus()){
+				     if (!saveCute) saveCute = document.body.innerHTML
 				     document.body.innerHTML="Enter password to confirm<br><br><input value='Please activate page' disabled></input><br><br><b>You are entering SudoActivate mode.</b>"
 			     }else{
+				     if (saveCute!==null) document.body.innerHTML = saveCute
 				     saveCute = null;
 		     if (!document.fullscreenElement) document.body.requestFullscreen()
 			     }
