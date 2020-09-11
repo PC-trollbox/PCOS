@@ -86,7 +86,7 @@ eventHandlers: { shutoff: [function(){
         idiot = ((idiot<<5)-idiot)+char;
         idiot = idiot & idiot; // Convert to 32bit integer
     }
-			     new uiwindow({nme: "errrep", title: "Error occured!", content: "The following error occured:<br><b>"+e.stack+"</b><br><br>It is an error in running the developer's program or the system error.<br>Please contact everyone who can code, the developer of the program and/or PCsoft.<br>They will help you with this error.<br>ERROR ID: <b>"+idiot.toString(18)+"</b><button onclick='errrep.remove()'>Close</button>"})
+			     new uiwindow({nme: "errrep", title: "Error occured!", content: "The following error occured:<br><b>"+e.stack.replace("\n","<br>")+"</b><br><br>It is an error in running the developer's program or the system error.<br>Please contact everyone who can code, the developer of the program and/or PCsoft.<br>They will help you with this error.<br>ERROR ID: <b>"+idiot.toString(18).substring(2)+"</b><button onclick='errrep.remove()'>Close</button>"})
 		     }
 		     uiwindow = class uiwindow{
 		     constructor(settings){
@@ -101,8 +101,8 @@ eventHandlers: { shutoff: [function(){
 			     var div = document.createElement("div")
 			     div.style = "left: "+settings.left.toString()+ "px; top: " + settings.top.toString() + "px; position: absolute; width: " + settings.width.toString() + "px; height: " + settings.height.toString()+"px;"
 			     div.id = settings.nme;
-				if (!settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
-				if (settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button disabled>X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
+				if (!settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div style="background: white; color: black" id="${settings.nme}-content">${settings.content}</div>`
+				if (settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button disabled>X</button><br><div id="${settings.nme}-content" style="background: white; color: black">${settings.content}</div>`
 			     desktop.appendChild(div);
 				if (!settings.unchangesize)     $('#' + settings.nme).resizable();
 	     if (!settings.undrag) $('#' + settings.nme).draggable();
