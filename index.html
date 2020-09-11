@@ -16,13 +16,22 @@
   bottom: 0;
   width: 100%;
 }
+		  centeralize{
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+	   transform: translate(-50%, -50%) }
 	  </style>
    </head>
-   <body style="background: deepskyblue;">
-       <h1>Work in progress!</h1>
-	   <div id=desktop>
-	   </div>
+   <body style="background: black; color: white; font-family: monospace;">	
+	   <centeralize>
+		   </strong>PC laptop<strong>
+	   </centeralize>
      <script type="text/javascript">
+	     setTimeout(function(){
 	     eventCallbacks = {on: function(event,callback){
 if (typeof event !== "string" && typeof callback !== "function") return "Cannot handle the event callback for the event '" + event + "'."
 if (this.eventHandlers[event] == undefined) this.eventHandlers[event] = []
@@ -58,7 +67,15 @@ eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to
 	     $('#' + settings.nme).draggable();
 		     }
 	     }
+		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button>PC</button></div>'
+		     document.body.style = "background: deepskyblue"
+	     }, 10000)
+	     setTimeout(function(){
+		     document.body.innerHTML = ""
+document.body.innerHTML = `	   <centeralize>
+		   </strong>PC laptop<strong>
+	   </centeralize><div class="footer">Powered by <strong>PCOS</strong></div>`
+	     }, 5000)
 	   </script>
-	   <div id="min" class="footer"><button>PC</button></div>
    </body>
 </html>
