@@ -58,7 +58,7 @@ eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to
 	       startmenu:
 		[
 		function(){
-			var cntent = "PCOS Start Menu<br>Add apps using JS."
+			var cntnt = "PCOS Start Menu<br>Add apps using JS."
 			for (var app in apps){
 				cntent = cntent + "<br><strong>"+app+"</strong><br><hr><br>Made by " + apps[app].company + "<br><button onclick='apps["+app+"].function()'>Run app</button>"
 			}
@@ -86,8 +86,11 @@ eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to
 	     if (!settings.undrag) $('#' + settings.nme).draggable();
 		     }
 	     }
-		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button onclick="osevents.emit(\\"startmenu\\", {})">PC</button></div>'
+		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button id=startyemenu>PC</button></div>'
 		     document.body.style = "background: deepskyblue"
+		     	     startyemenu.onclick = function(){
+osevents('startmenu', '')
+			     }
 		     		     eval(localStorage.getItem("afterboot.js"))
 	     }, 10000)
 	     setTimeout(function(){
