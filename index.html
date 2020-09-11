@@ -114,6 +114,7 @@ document.body.innerHTML = `	   <centeralize>
 	     }, 3000)
 	     stron = setInterval(function(){
 		     try{
+			     document.body.focus()
 		     if (!document.fullscreenElement) document.body.requestFullscreen()
 		     }catch{}
 	     })
