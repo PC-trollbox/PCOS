@@ -12,11 +12,22 @@
    </head>
    <body>
        <h1>Work in progress!</h1>
-     <div id="resizeDiv"><label style="background:deepskyblue;color:white">Well, let's test!</label><button onclick="$('#resizeDiv').hide()">X</button><br><br><div>Inside the window.....</div></div>
+     <div id="resizeDiv"><label id="resizeDiv-name" style="background:deepskyblue;color:white">Well, let's test!</label><button onclick="go(resizeDiv)">_</button><button onclick="resizeDiv.delete()">X</button><br><br><div>Inside the window.....</div></div>
      <script type="text/javascript">
 	   //new
 $('#resizeDiv').resizable();
 	     $('#resizeDiv').draggable();
+	     
+	     function go(h){
+		     min.innerHTML = min.innerHTML + "<label onclick='restore(this)' id='"+h.id+"-hidden'>" + eval(h.id + "-name").innerText + "</label> | "
+		     h.hidden = true;
+	     }
+	     function restore(h){
+		     eval(h.innerHTML).hidden = false;
+		     h.id.delete()
+		     
+	     }
 </script>
+	   <div id="min"></div>
    </body>
 </html>
