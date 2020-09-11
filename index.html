@@ -24,10 +24,10 @@ $('#resizeDiv').resizable();
 	     }
 	     function restore(h){
 		     eval(h.innerHTML).hidden = false;
-		     h.id.delete()
+		     eval(h.id).delete()
 		     
 	     }
 </script>
-	   <div id="min"></div>
+	   <div id="min"><button>PC</button></div>
    </body>
 </html>
