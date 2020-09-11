@@ -61,9 +61,6 @@ eventHandlers: { shutoff: [function(){
 	setTimeout(function(){
 	document.body.innerHTML="It is now safe to turn off your computer."; 
 		document.body.style="color: white; background: black; font-family: monospace"
-	clearInterval(stron)
-			   document.exitFullscreen()
-	window.close()
 		   }, 30000)
 }],
 	       startmenu:
@@ -79,7 +76,17 @@ eventHandlers: { shutoff: [function(){
 }
 }
 		     alertbug = function(e){
-			     new uiwindow({nme: "errrep", title: "Error occured!", content: "The following error occured:<br><b>"+e.stack+"</b><br><br>It is an error in running the developer's program or the system error.<br>Please contact everyone who can code, or PCsoft.<br>They will help you with this error.<br>ERROR ID: <b>"+Math.random().toString(16).replace(".","bug")+"</b><button onclick='errrep.delete()'>Close</button>"})
+			     var idiot = 0;
+			     var hash = 0;
+    if (e.stack.length == 0) {
+        return hash;
+    }
+    for (var i = 0; i < e.stack.length; i++) {
+        var char = e.stack.charCodeAt(i);
+        idiot = ((idiot<<5)-idiot)+char;
+        idiot = idiot & idiot; // Convert to 32bit integer
+    }
+			     new uiwindow({nme: "errrep", title: "Error occured!", content: "The following error occured:<br><b>"+e.stack+"</b><br><br>It is an error in running the developer's program or the system error.<br>Please contact everyone who can code, the developer of the program and/or PCsoft.<br>They will help you with this error.<br>ERROR ID: <b>"+idiot.toString(18)+"</b><button onclick='errrep.remove()'>Close</button>"})
 		     }
 		     uiwindow = class uiwindow{
 		     constructor(settings){
