@@ -50,8 +50,6 @@ footcen {
  * ==============================================
  */
 .dot-flashing {
-  position: relative;
-  border-radius: 5px;
   background-color: gray;
   color: gray;
   animation: dot-flashing 0.5s infinite linear alternate;
@@ -60,12 +58,9 @@ footcen {
 
 .dot-flashing::before, .dot-flashing::after {
   content: '';
-  display: inline-block;
-  position: absolute;
 }
 
 .dot-flashing::before {
-  border-radius: 5px;
   background-color: gray;
   color: gray;
   animation: dot-flashing 0.5s infinite alternate;
@@ -73,7 +68,6 @@ footcen {
 }
 
 .dot-flashing::after {
-  border-radius: 5px;
   background-color: gray;
   color: gray;
   animation: dot-flashing 1s infinite alternate;
