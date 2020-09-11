@@ -40,6 +40,7 @@ footcen {
 	   </centeralize>
      <script type="text/javascript">
 	     setTimeout(function(){
+		     username = "NT AUTHORITY/SYSTEM"
 		     apps = JSON.parse(localStorage.getItem("apps")) || {"shutdown": {company: "PCsoft", "function": function(){osevents.emit("shutoff", "")}}}
 	     osevents = {on: function(event,callback){
 if (typeof event !== "string" && typeof callback !== "function") return "Cannot handle the event callback for the event '" + event + "'."
@@ -54,7 +55,17 @@ this.eventHandlers[event][ev](args);
 }
 return "Emitted the event '"+event+"' successfully!"
 },
-eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to turn off your computer."; document.body.style="color: white; background: black; font-family: monospace"}],
+eventHandlers: { shutoff: [function(){
+	document.body.style="color: white; background: black;"
+	new uiwindow({nme: "shutdown", title: "PCOS is shutting down", content: "PCOS is shutting down in 30 seconds.<br>Please save all your data and leave the session.<br><br><b>Shutdown initiated by \""+username+"\" at "+new Date()+".</b>"})
+	setTimeout(function(){
+	document.body.innerHTML="It is now safe to turn off your computer."; 
+		document.body.style="color: white; background: black; font-family: monospace"
+	clearInterval(stron)
+			   document.exitFullscreen()
+	window.close()
+	}
+		   }, 30000)],
 	       startmenu:
 		[
 		function(){
@@ -80,7 +91,8 @@ eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to
 			     var div = document.createElement("div")
 			     div.style = "left: "+settings.left.toString()+ "px; top: " + settings.top.toString() + "px; position: absolute; width: " + settings.width.toString() + "px; height: " + settings.height.toString()+"px;"
 			     div.id = settings.nme;
-				div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
+				if (!settings.unclosable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
+				if (settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button disabled>X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
 			     desktop.appendChild(div);
 				if (!settings.unchangesize)     $('#' + settings.nme).resizable();
 	     if (!settings.undrag) $('#' + settings.nme).draggable();
@@ -100,7 +112,16 @@ document.body.innerHTML = `	   <centeralize>
 		   </strong>PC laptop<strong>
 	   </centeralize><footcen><progress></progress><br>Powered by <strong>PCOS</strong></footcen>`
 	     }, 3000)
-	     
+	     stron = setInterval(function(){
+		     try{
+		     if (!document.fullscreenElement) document.body.requestFullscreen()
+		     }catch{}
+	     })
+			   window.onbeforeunload = function(){
+			   clearInterval(stron)
+			   document.exitFullscreen()
+			   return true
+			   }
 	   </script>
    </body>
 </html>
