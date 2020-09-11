@@ -15,11 +15,18 @@
      <div id="demo"><label style="background:deepskyblue;color:white">Well, let's test!</label><button onclick="$('.demo').hide()">X</button><br><br><div>Inside the window.....</div></div>
      <script type="text/javascript">
 	   //new
-$(function(){
-	$('.demo')
-		.draggable()
-		.resizable();
-});
+$('#resizeDiv')
+	.resizable({
+		start: function(e, ui) {
+			alert('resizing started');
+		},
+		resize: function(e, ui) {
+		
+		},
+		stop: function(e, ui) {
+			alert('resizing stopped');
+		}
+	});
 </script>
    </body>
 </html>
