@@ -51,11 +51,9 @@ footcen {
  */
 .dot-flashing {
   position: relative;
-  width: 10px;
-  height: 10px;
   border-radius: 5px;
-  background-color: white;
-  color: white;
+  background-color: gray;
+  color: gray;
   animation: dot-flashing 0.5s infinite linear alternate;
   animation-delay: .5s;
 }
@@ -64,38 +62,31 @@ footcen {
   content: '';
   display: inline-block;
   position: absolute;
-  top: 0;
 }
 
 .dot-flashing::before {
-  left: -15px;
-  width: 10px;
-  height: 10px;
   border-radius: 5px;
-  background-color: white;
-  color: white;
+  background-color: gray;
+  color: gray;
   animation: dot-flashing 0.5s infinite alternate;
   animation-delay: 0s;
 }
 
 .dot-flashing::after {
-  left: 15px;
-  width: 10px;
-  height: 10px;
   border-radius: 5px;
-  background-color: white;
-  color: white;
+  background-color: gray;
+  color: gray;
   animation: dot-flashing 1s infinite alternate;
   animation-delay: 1s;
 }
 
 @keyframes dot-flashing {
   0% {
-    background-color: white;
+    background-color: gray;
   }
   50%,
   100% {
-    background-color: gray;
+    background-color: white;
   }
 }
 	  </style>
