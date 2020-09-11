@@ -40,7 +40,8 @@ footcen {
 	   </centeralize>
      <script type="text/javascript">
 	     setTimeout(function(){
-	     eventCallbacks = {on: function(event,callback){
+		     apps = JSON.parse(localStorage.getItem("apps")) || {"shutdown": {company: "PCsoft", "function": function(){eventCallbacks.emit("shutdown", "")}}}
+	     osevents = {on: function(event,callback){
 if (typeof event !== "string" && typeof callback !== "function") return "Cannot handle the event callback for the event '" + event + "'."
 if (this.eventHandlers[event] == undefined) this.eventHandlers[event] = []
 this.eventHandlers[event].push(callback)
@@ -53,9 +54,19 @@ this.eventHandlers[event][ev](args);
 }
 return "Emitted the event '"+event+"' successfully!"
 },
-eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to turn off your computer."; document.body.style="color: white; background: black; font-family: monospace"}] }
+eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to turn off your computer."; document.body.style="color: white; background: black; font-family: monospace"}],
+	       startmenu:
+		[
+		function(){
+			var content = "PCOS Start Menu<br>Add apps using JS."
+			for (var app in apps){
+				content = content + "<br><strong>"+app+"</strong><br><hr><br>Made by " + apps[app].company + "<br><button onclick='apps["+app+"].function()'>Run app</button>"
+			}
+			new uiwindow({nme: "start", undrag: true, title: "Start menu", left: 1, top: 508, width: 258, height: 107})
+		}	
+		]
+	       }
           }
-
 	     uiwindow = class uiwindow{
 		     constructor(settings){
 			     if (typeof settings !== "object") throw new Error("Made settings an object.")
@@ -69,21 +80,24 @@ eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to
 			     var div = document.createElement("div")
 			     div.style = "left: "+settings.left.toString()+ "px; top: " + settings.top.toString() + "px; position: absolute; width: " + settings.width.toString() + "px; height: " + settings.height.toString()+"px;"
 			     div.id = settings.nme;
-			     div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
+				div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
 			     desktop.appendChild(div);
-				     $('#' + settings.nme).resizable();
-	     $('#' + settings.nme).draggable();
+				if (!settings.unchangesize)     $('#' + settings.nme).resizable();
+	     if (!settings.undrag) $('#' + settings.nme).draggable();
 		     }
 	     }
-		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button>PC</button></div>'
+		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button onclick="osevents.emit(\\"startmenu\\", {})">PC</button></div>'
 		     document.body.style = "background: deepskyblue"
+		     		     eval(localStorage.getItem("afterboot.js"))
 	     }, 10000)
 	     setTimeout(function(){
+		     		     eval(localStorage.getItem("onboot.js"))
 		     document.body.innerHTML = ""
 document.body.innerHTML = `	   <centeralize>
 		   </strong>PC laptop<strong>
 	   </centeralize><footcen><progress></progress><br>Powered by <strong>PCOS</strong></footcen>`
-	     }, 3000)    
+	     }, 3000)
+	     
 	   </script>
    </body>
 </html>
