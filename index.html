@@ -9,6 +9,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
       <link rel="stylesheet" type="text/css" 
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
+	  <style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+	  </style>
    </head>
    <body style="background: deepskyblue;">
        <h1>Work in progress!</h1>
@@ -44,13 +52,13 @@ eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to
 			     var div = document.createElement("div")
 			     div.style = "left: "+settings.left.toString()+ "px; top: " + settings.top.toString() + "px; position: absolute; width: " + settings.width.toString() + "px; height: " + settings.height.toString()+"px;"
 			     div.id = settings.nme;
-			     div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').delete()">X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
+			     div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
 			     desktop.appendChild(div);
 				     $('#' + settings.nme).resizable();
 	     $('#' + settings.nme).draggable();
 		     }
 	     }
-</script>
-	   <div id="min"><button>PC</button></div>
+	   </script>
+	   <div id="min" class="footer"><button>PC</button></div>
    </body>
 </html>
