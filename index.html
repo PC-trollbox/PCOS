@@ -69,7 +69,7 @@ eventHandlers: { shutoff: [function(){
 	       startmenu:
 		[
 		function(){
-			var cntnt = "PCOS Start Menu<br>Add apps using JS."
+			var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"
 			for (var app in apps){
 				cntnt = cntnt + '<br><strong>"'+app+'"</strong><br><hr><br>Made by ' + apps[app].company + '<br><button onclick="apps[\''+app+'\'].function()">Run app</button>'
 			}
@@ -101,26 +101,6 @@ eventHandlers: { shutoff: [function(){
 
 		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button id=startyemenu>PC</button></div>'
 		     document.body.style = "background: deepskyblue"
-		     setTimeout(function(){
-			     	     	     if (!document.hasFocus()) document.body.onblur()
-	     stron = setInterval(function(){
-		     try{
-		     if (!document.fullscreenElement) document.body.requestFullscreen()
-			     window.onbeforeunload = function(){
-			   clearInterval(stron)
-			   document.exitFullscreen()
-			   }
-		     }catch{
-		     }
-	     })
-	     document.body.onblur = function(){
-saveCute = document.body.innerHTML
-				     document.body.innerHTML="Enter password to confirm<br><br><input value='Please activate page' disabled></input><br><br><b>You are entering SudoActivate mode."
-	     }
-	     document.body.onfocus = function(){
-		     document.body.innerHTML = saveCute
-	     }
-		     }, 5000)
 		     	     startyemenu.onclick = function(){
 osevents.emit('startmenu', '')
 			     }
