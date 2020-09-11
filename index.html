@@ -71,14 +71,17 @@ eventHandlers: { shutoff: [function(){
 		function(){
 			var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"
 			for (var app in apps){
-				cntnt = cntnt + '<br><strong>"'+app+'"</strong><br><hr><br>Made by ' + apps[app].company + '<br><button onclick="apps[\''+app+'\'].function()">Run app</button>'
+				cntnt = cntnt + '<br><strong>"'+app+'"</strong><br><hr><br>Made by ' + apps[app].company + '<br><button onclick="try{apps[\''+app+'\'].function()}catch(e){$alertbug(e)}">Run app</button>'
 			}
 			new uiwindow({nme: "start", undrag: true, title: "Start menu", left: 1, top: 508, width: 258, height: 107, content: cntnt})
 		}	
 		]
 }
 }
-	     uiwindow = class uiwindow{
+		     alertbug = function(e){
+			     new uiwindow({nme: "errrep", title: "Error occured!", content: "The following error occured:<br><b>"+e.stack+"</b><br><br>It is an error in running the developer's program or the system error.<br>Please contact everyone who can code, or PCsoft.<br>They will help you with this error.<br>ERROR ID: <b>"+Math.random().toString(16).replace(".","bug")+"</b><button onclick='errrep.delete()'>Close</button>"})
+		     }
+		     uiwindow = class uiwindow{
 		     constructor(settings){
 			     if (typeof settings !== "object") throw new Error("Made settings an object.")
 			     if (typeof settings.left !== "number") settings.left = 539
