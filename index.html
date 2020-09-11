@@ -82,34 +82,8 @@ eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to
 		     document.body.innerHTML = ""
 document.body.innerHTML = `	   <centeralize>
 		   </strong>PC laptop<strong>
-	   </centeralize><footcen><label id="s"></label><br>Powered by <strong>PCOS</strong></footcen>`
-euu()
-	     }, 3000)
-function euu(){
-	try{
-	if (!s.innerHTML.includes("label")) s.innerHTML = "<label style='color: white' id=dot1>O</label> <label id=dot2 style='color: gray'>O</label> <label id=dot3 style='color: gray'>O</label>"
-	if (dot1.style.color == "white"){
-		dot1.style.color="gray";
-		dot2.style.color="white";
-		dot3.style.color="gray";
-	} 
-		if (dot2.style.color == "white"){
-		dot1.style.color="gray;"
-		dot2.style.color="gray";
-		dot3.style.color="white";
-	} 
-		if (dot3.style.color == "white"){
-		dot1.style.color="white";
-		dot2.style.color="gray";
-		dot3.style.color="gray";
-	} 
-	setTimeout(function(){euu()}, 500)
-	}catch{
-		euu=undefined;
-		delete euu;
-		
-	}
-}	     
+	   </centeralize><footcen><progress></progress><br>Powered by <strong>PCOS</strong></footcen>`
+	     }, 3000)    
 	   </script>
    </body>
 </html>
