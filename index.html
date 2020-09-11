@@ -40,7 +40,7 @@ footcen {
 	   </centeralize>
      <script type="text/javascript">
 	     setTimeout(function(){
-		     apps = JSON.parse(localStorage.getItem("apps")) || {"shutdown": {company: "PCsoft", "function": function(){eventCallbacks.emit("shutdown", "")}}}
+		     apps = JSON.parse(localStorage.getItem("apps")) || {"shutdown": {company: "PCsoft", "function": function(){osevents.emit("shutdown", "")}}}
 	     osevents = {on: function(event,callback){
 if (typeof event !== "string" && typeof callback !== "function") return "Cannot handle the event callback for the event '" + event + "'."
 if (this.eventHandlers[event] == undefined) this.eventHandlers[event] = []
