@@ -73,7 +73,7 @@ eventHandlers: { shutoff: [function(){
 			for (var app in apps){
 				cntnt = cntnt + '<br><strong>"'+app+'"</strong><br><hr><br>Made by ' + apps[app].company + '<br><button onclick="try{apps[\''+app+'\'].function()}catch(e){$alertbug(e)}">Run app</button>'
 			}
-			new uiwindow({nme: "start", undrag: true, title: "Start menu", left: 1, top: 508, width: 258, height: 107, content: cntnt})
+			new uiwindow({nme: "start", title: "Start menu", left: 1, top: 508, width: 258, height: 107, content: cntnt})
 		}	
 		]
 }
