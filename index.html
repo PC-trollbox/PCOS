@@ -56,7 +56,7 @@ return "Emitted the event '"+event+"' successfully!"
 eventHandlers: { shutoff: [function(){document.body.innerHTML="It is now safe to turn off your computer."; document.body.style="color: white; background: black; font-family: monospace"}] }
           }
 
-	     class uiwindow{
+	     uiwindow = class uiwindow{
 		     constructor(settings){
 			     if (typeof settings !== "object") throw new Error("Made settings an object.")
 			     if (typeof settings.left !== "number") settings.left = 539
