@@ -115,7 +115,7 @@ eventHandlers: { shutoff: [function(){
 osevents.emit('startmenu', '')
 			     }
 		     		     eval(localStorage.getItem("afterboot.js"))
-	     }, 10000)
+	     }, 5000)
 	     setTimeout(function(){
 		     		     eval(localStorage.getItem("onboot.js"))
 		     document.body.innerHTML = ""
