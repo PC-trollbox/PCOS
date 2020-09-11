@@ -57,7 +57,7 @@ return "Emitted the event '"+event+"' successfully!"
 },
 eventHandlers: { shutoff: [function(){
 	document.body.style="color: white; background: black;"
-	new uiwindow({nme: "shutdown", title: "PCOS is shutting down", content: "PCOS is shutting down in 30 seconds.<br>Please save all your data and leave the session.<br><br><b>Shutdown initiated by \""+username+"\" at "+new Date()+".</b>"})
+	new uiwindow({nme: "shutdown", title: "PCOS is shutting down", content: "PCOS is shutting down in 30 seconds.<br>Please save all your data and leave the session.<br><br><b>Shutdown initiated by \""+username+"\" at "+new Date()+".</b>", uncloseable: true})
 	setTimeout(function(){
 	document.body.innerHTML="It is now safe to turn off your computer."; 
 		document.body.style="color: white; background: black; font-family: monospace"
@@ -91,14 +91,18 @@ eventHandlers: { shutoff: [function(){
 			     var div = document.createElement("div")
 			     div.style = "left: "+settings.left.toString()+ "px; top: " + settings.top.toString() + "px; position: absolute; width: " + settings.width.toString() + "px; height: " + settings.height.toString()+"px;"
 			     div.id = settings.nme;
-				if (!settings.unclosable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
+				if (!settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
 				if (settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button disabled>X</button><br><div id="${settings.nme}-content">${settings.content}</div>`
 			     desktop.appendChild(div);
 				if (!settings.unchangesize)     $('#' + settings.nme).resizable();
 	     if (!settings.undrag) $('#' + settings.nme).draggable();
 		     }
 	     }
-	     	     if (!document.hasFocus()) document.body.onblur()
+
+		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button id=startyemenu>PC</button></div>'
+		     document.body.style = "background: deepskyblue"
+		     setTimeout(function(){
+			     	     	     if (!document.hasFocus()) document.body.onblur()
 	     stron = setInterval(function(){
 		     try{
 		     if (!document.fullscreenElement) document.body.requestFullscreen()
@@ -116,8 +120,7 @@ saveCute = document.body.innerHTML
 	     document.body.onfocus = function(){
 		     document.body.innerHTML = saveCute
 	     }
-		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button id=startyemenu>PC</button></div>'
-		     document.body.style = "background: deepskyblue"
+		     }, 5000)
 		     	     startyemenu.onclick = function(){
 osevents.emit('startmenu', '')
 			     }
