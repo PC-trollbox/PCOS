@@ -33,7 +33,7 @@ footcen {
 	   transform: translate(-50%, -50%) }
 	  </style>
    </head>
-   <body style="background: black; color: white; font-family: monospace;">	
+   <body style="background: black; color: white; font-family: monospace;" autofocus>	
 	   <centeralize>
 
 		   </strong>PC laptop<strong>
@@ -114,9 +114,15 @@ document.body.innerHTML = `	   <centeralize>
 	     }, 3000)
 	     stron = setInterval(function(){
 		     try{
-			     document.body.focus()
+			     if (document.hasFocus() !== true){
+				     if (!saveCute) saveCute = document.body
+				     document.body.innerHTML="Enter password to confirm<br><br><input value='Please activate page' disabled></input><br><br><b>You are entering SudoActivate mode.</b>"
+			     }else{
+				     saveCute = null;
 		     if (!document.fullscreenElement) document.body.requestFullscreen()
+			     }
 		     }catch{}
+		     }
 	     })
 			   window.onbeforeunload = function(){
 			   clearInterval(stron)
