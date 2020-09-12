@@ -149,13 +149,23 @@ setTimeout(function() {
 
                         var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"
 
+			
                         for (var app in apps) {
-
-                            cntnt = cntnt + '<br><hr><br><strong>"' + app + '"</strong><br>Made by ' + apps[app].company + '<br><button onclick="try{apps[\'' + app + '\'].function()}catch(e){alertbug(e)}">Run app</button>'
+				
+                            gu.innerHTML = gu.innerHTML + '<label style="background: white; color: black" onmouseenter="this.style = \'background: blue; color: white;\'" onmouseleave="this.style = \'background: white; color: black;\'" onclick="try{apps[\'' + app + '\'].function()}catch(e){alertbug(e)}">'+app+'</label>'
 
                         }
 
-                        new uiwindow({
+							menuhandler.innerHTML = `<ul id="menuext" style="background: white; color: black"><li><div>Programs</div>
+    </ul id=gu>
+</ul>
+  </li></ul><li><div>Programs</div>`
+				$("#menuext").menu()
+			desktop.onclick=function(){
+				menuext.remove()
+				desktop.onclick = null
+			}
+                        /*new uiwindow({
 
                             nme: "start",
 
@@ -171,7 +181,7 @@ setTimeout(function() {
 
                             content: cntnt
 
-                        })
+                        })*/
 
 		}
 
@@ -242,7 +252,7 @@ setTimeout(function() {
 
     }
 
-    document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button id=startyemenu>PC</button></div>'
+    document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><label id="menuhandler"></label><br><button id=startyemenu>PC</button></div>'
 
     document.body.style = "background: deepskyblue"
 
