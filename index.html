@@ -156,7 +156,7 @@ setTimeout(function() {
     </ul>
   </li>
   <li onclick="location.reload()"><div>Reboot the system</div></li>
-  <li onclick="osevents.emit('shutoff', {})"><div>Turn off the system</div></li>
+  <li onclick="osevents.emit('shutoff', {}); startyemenu.disabled=true; this.className = this.className + ' ui-state-disabled '"><div>Turn off the system</div></li>
   <li id="idiotist" class="ui-state-disabled" onclick="osevents.emit('logoff', {})" disabled><div>Log out from the system</div></li>
 </ul>`
 										if (username !== "NT AUTHORITY/SYSTEM"){
@@ -166,14 +166,15 @@ setTimeout(function() {
 			
                         for (var app in apps) {
 				
-                            gu.innerHTML = gu.innerHTML + '<li><div><label style="background: white; color: black" onmouseenter="this.style = \'background: blue; color: white;\'" onmouseleave="this.style = \'background: white; color: black;\'" onclick="try{apps[\'' + app + '\'].function()}catch(e){alertbug(e)}">'+app+'</label></li></div>'
+                            gu.innerHTML = gu.innerHTML + '<li><div><label style="background: white; color: black" onmouseenter="this.style = \'background: blue; color: white;\'" onmouseleave="this.style = \'background: white; color: black;\'" onclick="try{apps[\'' + app + '\'].function(); menuhandler.innerHTML=\'\'}catch(e){alertbug(e)}">'+app+'</label></li></div>'
 
                         }
 			
 				$("#menumenu").menu()
-			desktop.onclick=function(){
-				menuext.remove()
-				desktop.onclick = null
+			document.onclick=function(t){
+				if (t.target !== menumenu && t.target !== menuhandler){
+				menuhandler.innerHTML = "";	
+				}
 			}
                         /*new uiwindow({
 
