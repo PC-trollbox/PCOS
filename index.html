@@ -149,17 +149,26 @@ setTimeout(function() {
 
                         var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"
 
-										menuhandler.innerHTML = `<ul id="menuext" style="background: white; color: black"><li><div>Programs</div>
+										menuhandler.innerHTML = `<ul id="menumenu">
+  <li><div>Programs</div>
     <ul id=gu>
-</ul>
-  </li></ul><li><div>Programs</div>`
+    </ul>
+  </li>
+  <li onclick="location.reload()"><div>Reboot the system</div></li>
+  <li onclick="osevents.emit('shutoff', {})"><div>Turn off the system</div></li>
+  <li id="idiotist" onclick="osevents.emit('logoff', {})" disabled><div>Log out from the system</div></li>
+</ul>`
+										if (username !== "NT AUTHORITY/SYSTEM"){
+											idiotist.disabled = false;
+										}
+			
                         for (var app in apps) {
 				
                             gu.innerHTML = gu.innerHTML + '<li><div><label style="background: white; color: black" onmouseenter="this.style = \'background: blue; color: white;\'" onmouseleave="this.style = \'background: white; color: black;\'" onclick="try{apps[\'' + app + '\'].function()}catch(e){alertbug(e)}">'+app+'</label></li></div>'
 
                         }
 			
-				$("#menuext").menu()
+				$("#menumenu").menu()
 			desktop.onclick=function(){
 				menuext.remove()
 				desktop.onclick = null
