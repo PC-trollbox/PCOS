@@ -221,14 +221,6 @@ setTimeout(function() {
 
             if (typeof settings !== "object") throw new Error("Made settings an object.")
 
-            if (typeof settings.left !== "number") settings.left = 539
-
-            if (typeof settings.top !== "number") settings.top = 244
-
-            if (typeof settings.width !== "number") settings.width = 248
-
-            if (typeof settings.height !== "number") settings.height = 127
-
             if (typeof settings.nme !== "string") throw new Error("Make name a string.")
 
             if (typeof settings.title !== "string") throw new Error("Make title a string.")
@@ -236,9 +228,7 @@ setTimeout(function() {
             if (typeof settings.content !== "string") throw new Error("Make content a string.")
 
             var div = document.createElement("div")
-
-            //div.style = "left: " + settings.left.toString() + "px; top: " + settings.top.toString() + "px; position: absolute; width: " + settings.width.toString() + "px; height: " + settings.height.toString() + "px;" commented for a while
-
+	    
             div.id = settings.nme;
 		
 	    div.title = settings.title;
