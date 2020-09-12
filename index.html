@@ -150,7 +150,7 @@ setTimeout(function() {
                         var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"
 
 										menuhandler.innerHTML = `<ul id="menuext" style="background: white; color: black"><li><div>Programs</div>
-    </ul id=gu>
+    <ul id=gu>
 </ul>
   </li></ul><li><div>Programs</div>`
                         for (var app in apps) {
@@ -158,6 +158,7 @@ setTimeout(function() {
                             gu.innerHTML = gu.innerHTML + '<li><div><label style="background: white; color: black" onmouseenter="this.style = \'background: blue; color: white;\'" onmouseleave="this.style = \'background: white; color: black;\'" onclick="try{apps[\'' + app + '\'].function()}catch(e){alertbug(e)}">'+app+'</label></li></div>'
 
                         }
+			
 				$("#menuext").menu()
 			desktop.onclick=function(){
 				menuext.remove()
