@@ -121,17 +121,13 @@ setTimeout(function() {
 
             shutoff: [function() {
 
-                document.body.style = "color: white; background: black;"
-
                 new uiwindow({
 
                     nme: "shutdown",
 
                     title: "PCOS is shutting down",
 
-                    content: "PCOS is shutting down in 30 seconds.<br>Please save all your data and leave the session.<br><br><b>Shutdown initiated by \"" + username + "\" at " + new Date() + ".</b>",
-
-                    uncloseable: true
+                    content: "PCOS is shutting down in 30 seconds.<br>Please save all your data and leave the session.<br><br><b>Shutdown initiated by \"" + username + "\" at " + new Date() + ".</b>"
 
                 })
 
@@ -244,17 +240,14 @@ setTimeout(function() {
             div.style = "left: " + settings.left.toString() + "px; top: " + settings.top.toString() + "px; position: absolute; width: " + settings.width.toString() + "px; height: " + settings.height.toString() + "px;"
 
             div.id = settings.nme;
-
-            if (!settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div style="background: white; color: black" id="${settings.nme}-content">${settings.content}</div>`
-
-            if (settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button disabled>X</button><br><div id="${settings.nme}-content" style="background: white; color: black">${settings.content}</div>`
-
+		
+	    div.title = settings.title;
+		
+	    div.innerHTML = settings.content;
+		
             desktop.appendChild(div);
 
-            if (!settings.unchangesize) $('#' + settings.nme).resizable();
-
-            if (!settings.undrag) $('#' + settings.nme).draggable();
-
+		$("#"+settings.nme).dialog()
         }
 
     }
