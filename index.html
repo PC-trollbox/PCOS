@@ -1,128 +1,293 @@
 <!DOCTYPE HTML>
+
 <html lang="en">
-  <head>
-      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
-      <title>PCOS - superbeta</title>
-      <script type="text/javascript" 
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-      <script type="text/javascript" 
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
-      <link rel="stylesheet" type="text/css" 
-	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
-	  <style>
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-footcen {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;		  
-}
-		  centeralize{
-        border-radius: 1em;
-        padding: 1em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-	   transform: translate(-50%, -50%) }
-	  </style>
-   </head>
-   <body style="background: black; color: white; font-family: monospace;" autofocus>	
-	   <centeralize>
 
-		   </strong>PC laptop<strong>
-	   </centeralize>
-     <script type="text/javascript">
-	     setTimeout(function(){
-		     username = "NT AUTHORITY/SYSTEM"
-		     apps = JSON.parse(localStorage.getItem("apps")) || {"shutdown": {company: "PCsoft", "function": function(){osevents.emit("shutoff", "")}}}
-	     osevents = {on: function(event,callback){
-if (typeof event !== "string" && typeof callback !== "function") return "Cannot handle the event callback for the event '" + event + "'."
-if (this.eventHandlers[event] == undefined) this.eventHandlers[event] = []
-this.eventHandlers[event].push(callback)
-return "Handled the event callback for '" + event + "' successfully!"
-},
-emit: function(event, args){
-if (typeof event !== "string" || args === undefined) return "Cannot emit the event '" + event + "'."
-for (ev in this.eventHandlers[event]){
-this.eventHandlers[event][ev](args);
-}
-return "Emitted the event '"+event+"' successfully!"
-},
-eventHandlers: { shutoff: [function(){
-	document.body.style="color: white; background: black;"
-	new uiwindow({nme: "shutdown", title: "PCOS is shutting down", content: "PCOS is shutting down in 30 seconds.<br>Please save all your data and leave the session.<br><br><b>Shutdown initiated by \""+username+"\" at "+new Date()+".</b>", uncloseable: true})
-	setTimeout(function(){
-	document.body.innerHTML="It is now safe to turn off your computer."; 
-		document.body.style="color: white; background: black; font-family: monospace"
-		   }, 30000)
+<head>
+
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+
+    <title>PCOS - superbeta</title>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css" />
+
+    <style>
+       .footer {
+
+           position: fixed;
+
+           left: 0;
+
+           bottom: 0;
+
+           width: 100%;
+
+       }
+
+       footcen {
+
+           position: fixed;
+
+           left: 0;
+
+           bottom: 0;
+
+           width: 100%;
+
+           text-align: center;
+
+       }
+
+       centeralize {
+
+           border-radius: 1em;
+
+           padding: 1em;
+
+           position: absolute;
+
+           top: 50%;
+
+           left: 50%;
+
+           margin-right: -50%;
+
+           transform: translate(-50%, -50%)
+       }
+    </style>
+
+</head>
+
+<body style="background: black; color: white; font-family: monospace;" autofocus>
+
+    <centeralize>
+
+        </strong>PC laptop<strong>
+
+    </centeralize>
+
+    <script type="text/javascript">
+setTimeout(function() {
+
+    username = "NT AUTHORITY/SYSTEM"
+
+    apps = JSON.parse(localStorage.getItem("apps")) || {
+
+        "shutdown": {
+
+            company: "PCsoft",
+
+            "function": function() {
+
+                osevents.emit("shutoff", "")
+
+            }
+
+        }
+
+    }
+
+    osevents = {
+
+        on: function(event, callback) {
+
+            if (typeof event !== "string" && typeof callback !== "function") return "Cannot handle the event callback for the event '" + event + "'."
+
+            if (this.eventHandlers[event] == undefined) this.eventHandlers[event] = []
+
+            this.eventHandlers[event].push(callback)
+
+            return "Handled the event callback for '" + event + "' successfully!"
+
+        },
+
+        emit: function(event, args) {
+
+            if (typeof event !== "string" || args === undefined) return "Cannot emit the event '" + event + "'."
+
+            for (ev in this.eventHandlers[event]) {
+
+                this.eventHandlers[event][ev](args);
+
+            }
+
+            return "Emitted the event '" + event + "' successfully!"
+
+        },
+
+        eventHandlers: {
+
+            shutoff: [function() {
+
+                document.body.style = "color: white; background: black;"
+
+                new uiwindow({
+
+                    nme: "shutdown",
+
+                    title: "PCOS is shutting down",
+
+                    content: "PCOS is shutting down in 30 seconds.<br>Please save all your data and leave the session.<br><br><b>Shutdown initiated by \"" + username + "\" at " + new Date() + ".</b>",
+
+                    uncloseable: true
+
+                })
+
+                setTimeout(function() {
+
+                    document.body.innerHTML = "It is now safe to turn off your computer.";
+
+                    document.body.style = "color: white; background: black; font-family: monospace"
+
+                }, 30000)
+
 }],
-	       startmenu:
-		[
-		function(){
-			var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"
-			for (var app in apps){
-				cntnt = cntnt + '<br><hr><br><strong>"'+app+'"</strong><br>Made by ' + apps[app].company + '<br><button onclick="try{apps[\''+app+'\'].function()}catch(e){alertbug(e)}">Run app</button>'
-			}
-			new uiwindow({nme: "start", title: "Start menu", left: 1, top: 508, width: 258, height: 107, content: cntnt})
-		}	
-		]
-}
-}
-		     alertbug = function(e){
-			     var idiot = 0;
-			     var hash = 0;
-    if (e.stack.length == 0) {
-        return hash;
-    }
-    for (var i = 0; i < e.stack.length; i++) {
-        var char = e.stack.charCodeAt(i);
-        idiot = ((idiot<<5)-idiot)+char;
-        idiot = idiot & idiot; // Convert to 32bit integer
-    }
-			     new uiwindow({nme: "errrep", title: "Error occured!", content: "The following error occured:<br><b>"+e.stack.replace("\n","<br>")+"</b><br><br>It is an error in running the developer's program or the system error.<br>Please contact everyone who can code, the developer of the program and/or PCsoft.<br>They will help you with this error.<br>ERROR ID: <b>"+idiot.toString(18).substring(2)+"</b><button onclick='errrep.remove()'>Close</button>"})
-		     }
-		     uiwindow = class uiwindow{
-		     constructor(settings){
-			     if (typeof settings !== "object") throw new Error("Made settings an object.")
-			     if (typeof settings.left !== "number") settings.left = 539
-			     if (typeof settings.top !== "number") settings.top = 244
-			     if (typeof settings.width !== "number") settings.width = 248
-			     if (typeof settings.height !== "number") settings.height = 127
-			     if (typeof settings.nme !== "string") throw new Error("Make name a string.")
-			     if (typeof settings.title !== "string") throw new Error("Make title a string.")
-			     if (typeof settings.content !== "string") throw new Error("Make content a string.")
-			     var div = document.createElement("div")
-			     div.style = "left: "+settings.left.toString()+ "px; top: " + settings.top.toString() + "px; position: absolute; width: " + settings.width.toString() + "px; height: " + settings.height.toString()+"px;"
-			     div.id = settings.nme;
-				if (!settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div style="background: white; color: black" id="${settings.nme}-content">${settings.content}</div>`
-				if (settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button disabled>X</button><br><div id="${settings.nme}-content" style="background: white; color: black">${settings.content}</div>`
-			     desktop.appendChild(div);
-				if (!settings.unchangesize)     $('#' + settings.nme).resizable();
-	     if (!settings.undrag) $('#' + settings.nme).draggable();
-		     }
-	     }
 
-		     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button id=startyemenu>PC</button></div>'
-		     document.body.style = "background: deepskyblue"
-		     	     startyemenu.onclick = function(){
-osevents.emit('startmenu', '')
-			     }
-		     		     eval(localStorage.getItem("afterboot.js"))
-	     }, 5000)
-	     setTimeout(function(){
-		     		     eval(localStorage.getItem("onboot.js"))
-		     document.body.innerHTML = ""
-document.body.innerHTML = `	   <centeralize>
+            startmenu:
+
+		[
+
+		function() {
+
+                        var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"
+
+                        for (var app in apps) {
+
+                            cntnt = cntnt + '<br><hr><br><strong>"' + app + '"</strong><br>Made by ' + apps[app].company + '<br><button onclick="try{apps[\'' + app + '\'].function()}catch(e){alertbug(e)}">Run app</button>'
+
+                        }
+
+                        new uiwindow({
+
+                            nme: "start",
+
+                            title: "Start menu",
+
+                            left: 1,
+
+                            top: 508,
+
+                            width: 258,
+
+                            height: 107,
+
+                            content: cntnt
+
+                        })
+
+		}
+
+		]
+
+        }
+
+    }
+
+    alertbug = function(e) {
+
+        var idiot = 0;
+
+        var hash = 0;
+
+        if (e.stack.length == 0) {
+
+            return hash;
+
+        }
+
+        for (var i = 0; i < e.stack.length; i++) {
+
+            var char = e.stack.charCodeAt(i);
+
+            idiot = ((idiot << 5) - idiot) + char;
+
+            idiot = idiot & idiot; // Convert to 32bit integer
+
+        }
+
+        new uiwindow({
+
+            nme: "errrep",
+
+            title: "Error occured!",
+
+            content: "The following error occured:<br><b>" + e.stack.replace("\n", "<br>") + "</b><br><br>It is an error in running the developer's program or the system error.<br>Please contact everyone who can code, the developer of the program and/or PCsoft.<br>They will help you with this error.<br>ERROR ID: <b>" + idiot.toString(18).substring(2) + "</b><button onclick='errrep.remove()'>Close</button>"
+
+        })
+
+    }
+
+    uiwindow = class uiwindow {
+
+        constructor(settings) {
+
+            if (typeof settings !== "object") throw new Error("Made settings an object.")
+
+            if (typeof settings.left !== "number") settings.left = 539
+
+            if (typeof settings.top !== "number") settings.top = 244
+
+            if (typeof settings.width !== "number") settings.width = 248
+
+            if (typeof settings.height !== "number") settings.height = 127
+
+            if (typeof settings.nme !== "string") throw new Error("Make name a string.")
+
+            if (typeof settings.title !== "string") throw new Error("Make title a string.")
+
+            if (typeof settings.content !== "string") throw new Error("Make content a string.")
+
+            var div = document.createElement("div")
+
+            div.style = "left: " + settings.left.toString() + "px; top: " + settings.top.toString() + "px; position: absolute; width: " + settings.width.toString() + "px; height: " + settings.height.toString() + "px;"
+
+            div.id = settings.nme;
+
+            if (!settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button onclick="document.getElementById('${settings.nme}').remove()">X</button><br><div style="background: white; color: black" id="${settings.nme}-content">${settings.content}</div>`
+
+            if (settings.uncloseable) div.innerHTML = `<label style="background:#1ab1ed;color:white;">${settings.title}</label><button disabled>X</button><br><div id="${settings.nme}-content" style="background: white; color: black">${settings.content}</div>`
+
+            desktop.appendChild(div);
+
+            if (!settings.unchangesize) $('#' + settings.nme).resizable();
+
+            if (!settings.undrag) $('#' + settings.nme).draggable();
+
+        }
+
+    }
+
+    document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><button id=startyemenu>PC</button></div>'
+
+    document.body.style = "background: deepskyblue"
+
+    startyemenu.onclick = function() {
+
+        osevents.emit('startmenu', '')
+
+    }
+
+    eval(localStorage.getItem("afterboot.js"))
+
+}, 5000)
+
+setTimeout(function() {
+
+    eval(localStorage.getItem("onboot.js"))
+
+    document.body.innerHTML = ""
+
+    document.body.innerHTML = `	   <centeralize>
+
 		   </strong>PC laptop<strong>
+
 	   </centeralize><footcen><progress></progress><br>Powered by <strong>PCOS</strong></footcen>`
-	     }, 3000)
-	   </script>
-   </body>
+
+}, 3000)
+    </script>
+
+</body>
+
 </html>
