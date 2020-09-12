@@ -157,10 +157,11 @@ setTimeout(function() {
   </li>
   <li onclick="location.reload()"><div>Reboot the system</div></li>
   <li onclick="osevents.emit('shutoff', {})"><div>Turn off the system</div></li>
-  <li id="idiotist" onclick="osevents.emit('logoff', {})" disabled><div>Log out from the system</div></li>
+  <li id="idiotist" class="ui-state-disabled" onclick="osevents.emit('logoff', {})" disabled><div>Log out from the system</div></li>
 </ul>`
 										if (username !== "NT AUTHORITY/SYSTEM"){
 											idiotist.disabled = false;
+											idiotist.className = "ui-menu-item";
 										}
 			
                         for (var app in apps) {
