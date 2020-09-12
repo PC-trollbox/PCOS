@@ -171,9 +171,10 @@ setTimeout(function() {
                         }
 			
 				$("#menumenu").menu()
-			document.onclick=function(t){
+			document.body.onclick=function(t){
 				if (t.target !== menumenu && t.target !== menuhandler){
 				menuhandler.innerHTML = "";	
+					document.body.onclick = null
 				}
 			}
                         /*new uiwindow({
