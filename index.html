@@ -80,11 +80,7 @@ setTimeout(function() {
 
             company: "PCsoft",
 
-            "function": function() {
-
-                osevents.emit("shutoff", "")
-
-            }
+            "function": eval('osevents.emit("shutoff", "")')
 
         }
 
@@ -167,7 +163,7 @@ setTimeout(function() {
 			
                         for (var app in apps) {
 				
-                            gu.innerHTML = gu.innerHTML + '<li><div><label style="background: white; color: black" onmouseenter="this.style = \'background: blue; color: white;\'" onmouseleave="this.style = \'background: white; color: black;\'" onclick="try{apps[\'' + app + '\'].function(); menuhandler.innerHTML=\'\'}catch(e){alertbug(e)}">'+app+'</label></li></div>'
+                            gu.innerHTML = gu.innerHTML + '<li><div><label style="background: white; color: black" onmouseenter="this.style = \'background: blue; color: white;\'" onmouseleave="this.style = \'background: white; color: black;\'" onclick="try{eval(apps[\'' + app + '\'].function); menuhandler.innerHTML=\'\'}catch(e){alertbug(e)}">'+app+'</label></li></div>'
 
                         }
 			
