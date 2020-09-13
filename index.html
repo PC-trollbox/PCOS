@@ -269,6 +269,12 @@ if (users !== undefined){
     }
     eval(localStorage.getItem("afterboot.js"))
 		go = undefined;
+		osevents.on("logoff",function(){
+			document.body.innerHTML = "<centeralize>Goodbye...</centeralize>"
+			setTimeout(function(){
+				location.reload()
+			}, 2000)
+		})
 	}
 	input = ""
 	document.body.innerHTML = 'PCOS boot login<br><br>Username: '
