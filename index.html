@@ -291,7 +291,6 @@ return;
 		document.body.innerHTML = document.body.innerHTML + "<br>Password: "
 		username = input;
 		input = "";
-return;
 		onkeypress = function(e){
 if (e.isTrusted){
 if (e.code == "Pause") return;
@@ -326,8 +325,7 @@ return;
 }
 input = input + e.key;
 document.body.innerText = document.body.innerText + e.key;
-}
-}
+		return
 }
     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button></div>'
 
