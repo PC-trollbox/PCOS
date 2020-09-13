@@ -76,7 +76,7 @@
 setTimeout(function() {
 
     username = "NT AUTHORITY/SYSTEM"
-
+	users = JSON.parse(localStorage.getItem("users")) || undefined
     apps = JSON.parse(localStorage.getItem("apps")) || {
 
         "shutdown": {
@@ -149,7 +149,7 @@ setTimeout(function() {
 
                         var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"
 
-										menuhandler.innerHTML = `<ul id="menumenu">
+										menuhandler.innerHTML = `<ul id="menumenu">${username}
   <li><div>Programs</div>
     <ul id=gu>
     </ul>
@@ -257,7 +257,72 @@ setTimeout(function() {
         }
 
     }
+if (users !== undefined){
+	go = function(){
+		document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button></div>'
 
+    document.body.style = "background: deepskyblue"
+
+    startyemenu.onclick = function() {
+
+        osevents.emit('startmenu', '')
+    }
+    eval(localStorage.getItem("afterboot.js"))
+		go = undefined;
+	}
+	input = ""
+	document.body.innerHTML = 'PCOS boot login<br><br>Username: '
+	onkeypress = function(e){
+if (e.isTrusted){
+if (e.code == "Pause") return;
+if (e.key == "Enter"||e.code == "Enter"){
+	if (users[input] == undefined) {
+		document.body.innerHTML = document.body.innerHTML + "<br>No such username.<br><br>Username: "
+		input = ""
+return;
+	}
+	if (users[input] != undefined && users[input].password){
+		document.body.innerHTML = document.body.innerHTML + "<br>Password: "
+		username = input;
+		input = "";
+return;
+		onkeypress = function(e){
+if (e.isTrusted){
+if (e.code == "Pause") return;
+if (e.key == "Enter"||e.code == "Enter"){
+	if (input == ""){
+	document.body.innerHTML = document.body.innerHTML + "<br>Enter your login password."
+	onkeypress = null
+	input = "";
+	setTimeout(function(){location.reload()}, 2000);
+return;
+}
+	if (users[username].password == input){
+		go()
+		input = "";
+	}else{
+			document.body.innerHTML = document.body.innerHTML + "<br>Incorrect password"
+	onkeypress = null
+	input = "";
+		setTimeout(function(){location.reload()}, 2000);
+	}
+}
+input = input + e.key;
+}
+}
+}
+	}
+if (input == ""){
+	document.body.innerHTML = document.body.innerHTML + "<br>Enter your login data.<br><br>Username: "
+	input = "";
+return;
+}
+}
+input = input + e.key;
+document.body.innerText = document.body.innerText + e.key;
+}
+}
+}
     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button></div>'
 
     document.body.style = "background: deepskyblue"
