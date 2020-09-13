@@ -15,7 +15,23 @@
 <script src="js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+  <style>
+   .sign {
+    float: right; /* Выравнивание по правому краю */
+    border: 1px solid #333; /* Параметры рамки */
+    padding: 7px; /* Поля внутри блока */
+    margin: 10px 0 5px 5px; /* Отступы вокруг */
+    background: #f0f0f0; /* Цвет фона */ 
+   }
+   .sign figcaption {
+    margin: 0 auto 5px; /* Отступы вокруг абзаца */
+   }
+  </style>
+  <!--[if lt IE 9]>
+   <script>
+    document.createElement('figure');
+    document.createElement('figcaption');</script>
+  <![endif]-->
     <style>
 	.ui-menu { width: 150px; }
        .footer {
@@ -266,7 +282,7 @@ var ev = eval(localStorage.getItem("login.exe"))
         }
 
     }
-    document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button></div>'
+    document.body.innerHTML = '<div id="desktop"><label onclick="new uiwindow({nme: \'PCchat\', title: \'PC chat\', content: \'<iframe src=\\"http://bossyfakewebmaster--tbsharedaccount.repl.co/\\"})"><figure class="sign"><p><img src="https://repl.it/public/images/favicon.ico" alt="Repl.IT favicon" width=100 height=100></img></p><figcaption>PCchat</figcaption></figure></label></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button></div>'
 
     document.body.style = "background: deepskyblue"
 
