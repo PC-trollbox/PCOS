@@ -68,7 +68,7 @@
 
     <centeralize>
 
-        </strong>PC laptop<strong>
+        <strong>PC laptop</strong>
 
     </centeralize>
 
@@ -77,6 +77,12 @@ setTimeout(function() {
 
     username = "NT AUTHORITY/SYSTEM"
 	users = JSON.parse(localStorage.getItem("users")) || undefined
+		if (users !== undefined) var ev = eval(localStorage.getItem("login.exe"))
+	if (ev !== "log_in" && username == "NT AUTHORITY/SYSTEM") {
+		document.body.style = "background: blue; color: white"
+		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>LOGON_RULES_VIOLATION<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage's users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0xl37ogin3<br><br><br>*** login_drv.drv - Address 0x489484648 base at 0x1ead6a9d, DateStamp 0000ab0a<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
+		return 
+	}
     apps = JSON.parse(localStorage.getItem("apps")) || {
 
         "shutdown": {
@@ -258,75 +264,6 @@ setTimeout(function() {
 
     }
 if (users !== undefined){
-	go = function(){
-		document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button></div>'
-
-    document.body.style = "background: deepskyblue"
-
-    startyemenu.onclick = function() {
-
-        osevents.emit('startmenu', '')
-    }
-    eval(localStorage.getItem("afterboot.js"))
-		go = undefined;
-		osevents.on("logoff",function(){
-			document.body.innerHTML = "<centeralize>Goodbye...</centeralize>"
-			setTimeout(function(){
-				location.reload()
-			}, 2000)
-		})
-	}
-	input = ""
-	document.body.innerHTML = 'PCOS boot login<br><br>Username: '
-	onkeypress = function(e){
-if (e.isTrusted){
-if (e.code == "Pause") return;
-if (e.key == "Enter"||e.code == "Enter"){
-	if (users[input] == undefined) {
-		document.body.innerHTML = document.body.innerHTML + "<br>No such username.<br><br>Username: "
-		input = ""
-return;
-	}
-	if (users[input] != undefined && users[input].password){
-		document.body.innerHTML = document.body.innerHTML + "<br>Password: "
-		username = input;
-		input = "";
-		onkeypress = function(e){
-if (e.isTrusted){
-if (e.code == "Pause") return;
-if (e.key == "Enter"||e.code == "Enter"){
-	if (input == ""){
-	document.body.innerHTML = document.body.innerHTML + "<br>Enter your login password."
-	onkeypress = null
-	input = "";
-	setTimeout(function(){location.reload()}, 2000);
-return;
-}
-	if (users[username].password == input){
-		go()
-		input = "";
-	}else{
-			document.body.innerHTML = document.body.innerHTML + "<br>Incorrect password"
-	onkeypress = null
-	input = "";
-		setTimeout(function(){location.reload()}, 2000);
-	}
-}
-input = input + e.key;
-}
-}
-}
-	}
-if (input == ""){
-	document.body.innerHTML = document.body.innerHTML + "<br>Enter your login data.<br><br>Username: "
-	input = "";
-return;
-}
-}
-input = input + e.key;
-document.body.innerText = document.body.innerText + e.key;
-		return
-}
     document.body.innerHTML = '<div id="desktop"></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button></div>'
 
     document.body.style = "background: deepskyblue"
@@ -349,10 +286,9 @@ setTimeout(function() {
 
     document.body.innerHTML = `	   <centeralize>
 
-		   </strong>PC laptop<strong>
+		   <strong>PC laptop</strong>
 
 	   </centeralize><footcen><progress></progress><br>Powered by <strong>PCOS</strong></footcen>`
-
 }, 3000)
     </script>
 
