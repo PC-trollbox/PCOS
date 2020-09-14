@@ -211,7 +211,7 @@ var ev = eval(localStorage.getItem("login.exe"))
 		"company": "PCsoft",
 		"function": `
 func = function func(){
-try{lastReturn.innerText = eval(evaltext.value).toString();}catch(e){alertbug(e)}
+try{lastReturn.innerText = String(eval(evaltext.value))}catch(e){alertbug(e)}
 }
 new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=lastReturn>Last Return</label><br><button onclick=func()>Eval</button><br><textarea type="text" size="50" id="evaltext" maxlength="1000000"style="font-family: Arial;font-size: 12pt; width:100%;height:95%"></textarea>'})
 
