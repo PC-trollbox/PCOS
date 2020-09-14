@@ -202,11 +202,21 @@ var ev = eval(localStorage.getItem("login.exe"))
 
         "shutdown": {
 
-            company: "PCsoft",
+            "company": "PCsoft",
 
             "function": 'osevents.emit("shutoff", "")'
 
-        }
+        },
+	"eval": {
+		"company": "PCsoft",
+		"function": `
+func = function func(){
+try{lastReturn.innerText = eval(evaltext.value).toString();}catch(e){alertbug(e)}
+}
+new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=lastReturn>Last Return</label><br><button onclick=func()>Eval</button><br><textarea type="text" size="50" id="evaltext" maxlength="1000000"style="font-family: Arial;font-size: 12pt; width:100%;height:95%"></textarea>'})
+
+`
+	}
 
     }
 
@@ -242,15 +252,7 @@ var ev = eval(localStorage.getItem("login.exe"))
 
             shutoff: [function() {
 
-                new uiwindow({
-
-                    nme: "shutdown",
-
-                    title: "PCOS is shutting down",
-
-                    content: "PCOS is shutting down in 30 seconds.<br>Please save all your data and leave the session.<br><br><b>Shutdown initiated by \"" + username + "\" at " + new Date() + ".</b>"
-
-                })
+		    document.body.innerHTML="<centeralize><progress></progress> Shutting down...</centeralize><footcen>PCOS Professional</footcen>"
 
                 setTimeout(function() {
 
@@ -258,9 +260,23 @@ var ev = eval(localStorage.getItem("login.exe"))
 
                     document.body.style = "color: white; background: black; font-family: monospace"
 
-                }, 30000)
+                }, 5000)
 
 }],
+		reboot: [function(){
+			document.body.innerHTML="<centeralize><progress></progress> Restarting...</centeralize><footcen>PCOS Professional</footcen>"
+
+                setTimeout(function() {
+
+                    document.body.innerHTML = "It is now safe to reboot your computer.";
+
+                    document.body.style = "color: white; background: black; font-family: monospace"
+			
+			location.reload()
+
+                }, 5000)
+		}
+		]
 
             startmenu:
 
@@ -275,8 +291,8 @@ var ev = eval(localStorage.getItem("login.exe"))
     <ul id=gu>
     </ul>
   </li>
-  <li onclick="location.reload()"><div>Reboot the system</div></li>
-  <li onclick="osevents.emit('shutoff', {}); startyemenu.disabled=true; this.className = this.className + ' ui-state-disabled '"><div>Turn off the system</div></li>
+  <li onclick="osevents.emit('reboot', {});"><div>Reboot the system</div></li>
+  <li onclick="osevents.emit('shutoff', {});"><div>Turn off the system</div></li>
   <li id="idiotist" class="ui-state-disabled" onclick="osevents.emit('logoff', {})" disabled><div>Log out from the system</div></li>
 <li onclick="menuhandler.innerHTML = ''"><div>Close menu</div></li>
 </ul>`
