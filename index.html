@@ -334,9 +334,9 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 	   [function(js, callerw){
 		   //You can add some prevention
 		   try{
-		   sit.emit("JSresult", callerw.caller, eval(js));
+		   sit.emit("JSresult", callerw, eval(js));
 		   }catch(e){
-			   sit.emit("JSresult", callerw.caller, e);
+			   sit.emit("JSresult", callerw, e);
 		   }
 	   }]
 
