@@ -329,10 +329,9 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 
 		}
 
-		]
-
-        },
-	   "RC": [function(js, callerw){
+		],
+		"RC":
+	   [function(js, callerw){
 		   //You can add some prevention
 		   try{
 		   sit.emit("JSresult", callerw.caller, eval(js));
@@ -340,6 +339,8 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 			   sit.emit("JSresult", callerw.caller, e);
 		   }
 	   }]
+
+        }
 
     }
 
@@ -407,10 +408,14 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 	    sit.connect()
     }
 	sit.on("printJS", function(js, callerrw){
-		osevents.emit("RC", js, callerrw)
+osevents.emit("RC", js, callerrw)
 	})
     //My computer: https://www.iconarchive.com/download/i47362/icons-land/vista-hardware-devices/Computer.ico
-    searchedProps = "UserAgent: " + navigator.userAgent + "<br>Browser: " + BrowserDetect.browser + " "+ BrowserDetect.version + "<br>Real OS: " + BrowserDetect.OS + "<br>Your ComputerID to control: " + sit.id
+	
+		searchedProps = "UserAgent: " + navigator.userAgent + "<br>Browser: " + BrowserDetect.browser + " "+ BrowserDetect.version + "<br>Real OS: " + BrowserDetect.OS + "<br>Your ComputerID to control: Temporairly OR permanently unknown"
+	setInterval(function(){
+		    searchedProps = "UserAgent: " + navigator.userAgent + "<br>Browser: " + BrowserDetect.browser + " "+ BrowserDetect.version + "<br>Real OS: " + BrowserDetect.OS + "<br>Your ComputerID to control: " + sit.id
+	})
 opened = '<h1>PCchat iframe</h1><br>You may experience some bugs!<br><iframe src=\'https://bossyfakewebmaster--tbsharedaccount.repl.co\'></iframe>'.toString()
     document.body.innerHTML = '<div id="desktop"><label onclick="new uiwindow({nme: \'PCchat\', title: \'PCchat iframe\', content: opened})"><figure class="sign"><p><img src="https://repl.it/public/images/favicon.ico" alt="Repl.IT favicon" width=100 height=100></img></p><figcaption>PCchat</figcaption></figure></label><label onclick="new uiwindow({nme: \'browserinfo\', title: \'Browser information\', content: searchedProps})"><figure class="sign"><p><img src="https://www.iconarchive.com/download/i47362/icons-land/vista-hardware-devices/Computer.ico" alt="My computer icon from IconArchive" width=100 height=100></img></p><figcaption>Browser information</figcaption></figure></label></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button></div>'
     document.body.style = "background: deepskyblue"
