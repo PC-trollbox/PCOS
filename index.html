@@ -189,6 +189,8 @@ BrowserDetect.init();
 bootInt = setTimeout(function() {
 try{
 bootInt = null;
+	processexecuted = {}; //unused for a while
+	mem = 1000; //unused for a while
     username = "NT AUTHORITY/SYSTEM"
 	users = JSON.parse(localStorage.getItem("users")) || undefined
 		if (users !== undefined) {
@@ -198,7 +200,7 @@ var ev = eval(localStorage.getItem("login.exe"))
 		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>LOGON_RULES_VIOLATION<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0xl37ogin3<br><br><br>*** login_drv.drv - Address 0x489484648 base at 0x1ead6a9d, DateStamp 0000ab0a<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
 		return 
 	}
-}
+		}
     apps = JSON.parse(localStorage.getItem("apps")) || {
 
         "shutdown": {
@@ -216,7 +218,8 @@ try{lastReturn.innerText = String(eval(evaltext.value))}catch(e){alertbug(e)}
 }
 new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=lastReturn>Last Return</label><br><button onclick=func()>Eval</button><br><textarea type="text" size="50" id="evaltext" maxlength="1000000"style="font-family: Arial;font-size: 12pt; width:100%;height:95%"></textarea>'})
 
-`
+`,
+		"mem": 10
 	}
 
     }
@@ -331,12 +334,12 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 
 		],
 		"RC":
-	   [function(js, callerw){
+	   [function(js){
 		   //You can add some prevention
 		   try{
-		   sit.emit("JSresult", callerw, eval(js));
+		   sit.emit("JSresult", js.caller, String(eval(js.js)));
 		   }catch(e){
-			   sit.emit("JSresult", callerw, e);
+			   sit.emit("JSresult", js.caller, String(e.stack));
 		   }
 	   }]
 
@@ -408,7 +411,7 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 	    sit.connect()
     }
 	sit.on("printJS", function(js, callerrw){
-osevents.emit("RC", js, callerrw)
+osevents.emit("RC", {js: js, caller: callerrw})
 	})
     //My computer: https://www.iconarchive.com/download/i47362/icons-land/vista-hardware-devices/Computer.ico
 	
