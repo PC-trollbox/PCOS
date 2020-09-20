@@ -227,7 +227,7 @@ var ev = eval(localStorage.getItem("login.exe"))
 		"company": "PCsoft",
 		"function": `
 func = function func(){
-try{lastReturn.innerText = String(eval(evaltext.value))}catch(e){alertbug(e)}
+try{lastReturn.innerText = String(eval(document.getElementById("evaltext").value))}catch(e){alertbug(e)}
 }
 new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=lastReturn>Last Return</label><br><button onclick=func()>Eval</button><br><textarea type="text" size="50" id="evaltext" maxlength="1000000"style="font-family: Arial;font-size: 12pt; width:100%;height:95%"></textarea>'})
 
@@ -240,6 +240,28 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 new uiwindow({nme: "mem-usage", title: "Memory usage", content: "Memory:<br>"+mem})
 `,
 		"mem": 1
+	    },
+	    "notepad": {
+		    "function": `
+
+Select = function Select(){
+var filename = prompt("Input filename") || "new"
+if (!localStorage.getItem(filename)){
+var sel = confirm("No file called \\"" +filename+"\\" found.\\nCreate one?")
+if (sel) localStorage.setItem(filename, "")
+return "duck"
+}
+document.getElementById("notepadwindowtext").value = localStorage.getItem(filename)
+}
+
+Save = function Save(){
+var filename = prompt("Input filename") || "new"
+localStorage.setItem(filename, document.getElementById("notepadwindowtext").value)
+}
+
+new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onclick=Select()>Open</button> | <button onclick=Save()>Save as</button><br><textarea type="text" size="50" id="notepadwindowtext" maxlength="1000000"style="font-family: Arial;font-size: 12pt; width:100%;height:95%"></textarea>'})`,
+		    "company": "PCsoft",
+		    "mem": 5
 	    }
 
     }
