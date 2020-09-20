@@ -208,7 +208,7 @@ var ev = eval(localStorage.getItem("login.exe"))
 			}
 			mem = mem - apps[app].mem;
 				eval(apps[app].function);
-				mem = mem + apps[app].mem;
+				setTimeout(function(){mem = mem + apps[app].mem;}, 1000);
 	}
     apps = JSON.parse(localStorage.getItem("apps")) || {
 
