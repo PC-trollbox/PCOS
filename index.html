@@ -202,7 +202,7 @@ var ev = eval(localStorage.getItem("login.exe"))
 		}
 		execute = function(app){
 			if (mem == 0) return  alertbug({stack: "Memory is overused."})
-			if (app.mem == undefined) {
+			if (apps[app].mem == undefined) {
 				eval(apps[app].function);
 				return alertbug({stack: "In newer versions of PCOS, the memory usage will be required, otherwise, the program will not run.\nThe program was executed without memory usage."})
 			}
