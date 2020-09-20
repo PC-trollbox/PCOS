@@ -189,7 +189,7 @@ BrowserDetect.init();
 bootInt = setTimeout(function() {
 try{
 bootInt = null;
-	mem = 1000;
+			mem = 10;
     username = "NT AUTHORITY/SYSTEM"
 	users = JSON.parse(localStorage.getItem("users")) || undefined
 		if (users !== undefined) {
@@ -200,12 +200,14 @@ var ev = eval(localStorage.getItem("login.exe"))
 		return 
 	}
 		}
+		mem = 1000;
 		execute = function(app){
-			if (mem == 0) return  alertbug({stack: "Memory is overused."})
+			if (mem == 0) return  alertbug({stack: "No free memory. Please wait and try again."})
 			if (apps[app].mem == undefined) {
 				eval(apps[app].function);
 				return alertbug({stack: "In newer versions of PCOS, the memory usage will be required, otherwise, the program will not run.\nThe program was executed without memory usage."})
 			}
+			if (apps[app].mem > mem) return  alertbug({stack: "The app requires more memory, than you have.<br>You have "+mem.toString()+" memory."})
 			mem = mem - apps[app].mem;
 				eval(apps[app].function);
 				setTimeout(function(){mem = mem + apps[app].mem;}, 1000);
@@ -231,7 +233,14 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 
 `,
 		"mem": 10
-	}
+	},
+	    "memory": {
+		    "company": "PCsoft",
+		"function": `
+new uiwindow({nme: "mem-usage", title: "Memory usage", content: "Memory:<br>"+mem})
+`,
+		"mem": 1
+	    }
 
     }
 
