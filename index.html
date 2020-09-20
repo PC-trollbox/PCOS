@@ -189,8 +189,7 @@ BrowserDetect.init();
 bootInt = setTimeout(function() {
 try{
 bootInt = null;
-	processexecuted = {}; //unused for a while
-	mem = 1000; //unused for a while
+	mem = 1000;
     username = "NT AUTHORITY/SYSTEM"
 	users = JSON.parse(localStorage.getItem("users")) || undefined
 		if (users !== undefined) {
@@ -201,13 +200,25 @@ var ev = eval(localStorage.getItem("login.exe"))
 		return 
 	}
 		}
+		execute = function(app){
+			if (mem == 0) return  alertbug({stack: "Memory is overused."})
+			if (app.mem == undefined) {
+				eval(apps[app].function);
+				return alertbug({stack: "In newer versions of PCOS, the memory usage will be required, otherwise, the program will not run.\nThe program was executed without memory usage."})
+			}
+			mem = mem - apps[app].mem;
+				eval(apps[app].function);
+				mem = mem + apps[app].mem;
+	}
     apps = JSON.parse(localStorage.getItem("apps")) || {
 
         "shutdown": {
 
             "company": "PCsoft",
 
-            "function": 'osevents.emit("shutoff", "")'
+            "function": 'osevents.emit("shutoff", "")',
+		
+		"mem": 0
 
         },
 	"eval": {
@@ -307,7 +318,7 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 			
                         for (var app in apps) {
 				
-                            gu.innerHTML = gu.innerHTML + '<li onclick="try{eval(apps[\'' + app + '\'].function); menuhandler.innerHTML=\'\'}catch(e){alertbug(e)}"><div><label>'+app+'</label></li></div>'
+                            gu.innerHTML = gu.innerHTML + '<li onclick="try{execute(app); menuhandler.innerHTML=\'\'}catch(e){alertbug(e)}"><div><label>'+app+'</label></li></div>'
 
                         }
 			
