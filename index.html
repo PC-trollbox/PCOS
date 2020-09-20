@@ -318,7 +318,7 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 			
                         for (var app in apps) {
 				
-                            gu.innerHTML = gu.innerHTML + '<li onclick="try{execute(app); menuhandler.innerHTML=\'\'}catch(e){alertbug(e)}"><div><label>'+app+'</label></li></div>'
+                            gu.innerHTML = gu.innerHTML + '<li onclick="try{execute(\''+app+'\'); menuhandler.innerHTML=\'\'}catch(e){alertbug(e)}"><div><label>'+app+'</label></li></div>'
 
                         }
 			
