@@ -546,6 +546,7 @@ if (localStorage.getItem("oobe") == null && apps !== defaultapps){
  <centeralize> <strong>PC laptop</strong></centeralize><footcen><img src="https://i.imgur.com/Hco0aDe.gif" heigth=100 width=100></img><br>Performing Firmware Update...<br>Powered by <strong>PCOS</strong></footcen>
 `
 				setTimeout(function(){
+					localStorage.removeItem("apps")
 				localStorage.setItem("oobe", "true");
 					location.reload()
 				}, 60000);
