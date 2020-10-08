@@ -1,3 +1,5 @@
+var uses = localStorage.getItem("remaining") || 10
+localStorage.setItem("remaining", uses.toString())
 //Progress Bar Generator
 
 //Originally made by NT_Cat
@@ -44,7 +46,9 @@ var progressducky = 0;
 document.body.innerHTML = "<code style='color:white;'>Running INSTALLPCOS: COPY<br>" + generateProgress(99) + "</code>"
 
 setTimeout(function() {
-
+if (uses == 0){
+	return document.body.innerHTML = "<code style='color:white;'>Copy cannot be installed. Uses remaining is equal to zero.</code>"
+}
     f = function f() {
         if (progressducky == 100) return installationDone()
 
@@ -173,7 +177,11 @@ if (e.key == "Enter"){
 `);
 
     $store.drives["C:"].filesys.set('boot/index.js', `
-
+var uses = localStorage.setItem("remaining")
+localStorage.setItem("remaining", (uses-1).toString())
+if (uses == 0){
+	return document.body.innerHTML = "<code style='color:white;'>Copy cannot be used. Uses remaining is equal to zero.</code>"
+}
 var runnedbest=true;
 
 var attempts = 0;
@@ -182,9 +190,9 @@ unlock = function unlock(){
 
 attempts = 0;
 
-document.body.innerHTML = '<nav style="background: deepskyblue; color: white;"><div class="nav-wrapper" style="background: deepskyblue; color: white;"><div class="col s12" style="background: deepskyblue; color: white;"><label id=time1 style="color: white;"><i class="material-icons left" title="Time not set">info</i>Time not set</label> <i class="material-icons left" title="The installing of updates was not successfull">build</i><i class="material-icons left" id="notifmaker"></i><label id="lastnotif" style="color: white;">The installing of updates was not successfull.</label></div></div></nav><button class="btn waves-effect waves-light" onclick="goCLI()" name="action" id="act">Go CLI</button><button class="btn waves-effect waves-light" onclick="lockModal()" data-target="modal1" name="action" id="act">Lock UI</button><button class="btn waves-effect waves-light" onclick="rJS()" data-target="modal1" name="action" id="act">RUN JS</button><button class="btn waves-effect waves-light" onclick="shutoff()" data-target="modal1" name="action" id="act">Turn off</button><button class="btn waves-effect waves-light" onclick="restart()" data-target="modal1" name="action" id="act">Restart</button>';
+document.body.innerHTML = '<nav style="background: black; color: white;"><div class="nav-wrapper" style="background: black; color: white;"><div class="col s12" style="background: deepskyblue; color: white;"><label id=time1 style="color: white;"><i class="material-icons left" title="Time not set">info</i>Time not set</label> <i class="material-icons left" title="The installing of updates was not successfull">build</i><i class="material-icons left" id="notifmaker"></i><label id="lastnotif" style="color: white;">Warning! The copy is no more supported. Remaining uses: ${uses}</label></div></div></nav><button class="btn waves-effect waves-light" onclick="goCLI()" name="action" id="act">Go CLI</button><button class="btn waves-effect waves-light" onclick="lockModal()" data-target="modal1" name="action" id="act">Lock UI</button><button class="btn waves-effect waves-light" onclick="rJS()" data-target="modal1" name="action" id="act">RUN JS</button><button class="btn waves-effect waves-light" onclick="shutoff()" data-target="modal1" name="action" id="act">Turn off</button><button class="btn waves-effect waves-light" onclick="restart()" data-target="modal1" name="action" id="act">Restart</button>';
 
-document.body.style = "background: DeepSkyBlue; color: white;";
+document.body.style = "background: black; color: white;";
 
 if (!runnedbest){
 
@@ -266,7 +274,7 @@ res.innerText = errak.stack;
 
 lockModal = function lockModal(){
 
-document.body.innerHTML = '<nav style="background: deepskyblue; color: white;"><div class="nav-wrapper" style="background: deepskyblue; color: white;"><div class="col s12" style="background: deepskyblue; color: white;"><i class="material-icons left" title="The installing of updates was not successfull">build</i><i class="material-icons left" id="notifmaker"></i><label id="lastnotif" style="color: white;">The installing of updates was not successfull.</label></div></div></nav><h4>Set password</h4> <p>Set a password, then click set.</p><br><input id="password" type="password"></input><label for="password">Password</label><br><br><br><a href="#!" onclick="lockUI()" class="modal-close waves-effect waves-green btn-flat">Set</a>'
+document.body.innerHTML = '<nav style="background: black; color: white;"><div class="nav-wrapper" style="background: black; color: white;"><div class="col s12" style="background: deepskyblue; color: white;"><i class="material-icons left" title="The installing of updates was not successfull">build</i><i class="material-icons left" id="notifmaker"></i><label id="lastnotif" style="color: white;">The installing of updates was not successfull.</label></div></div></nav><h4>Set password</h4> <p>Set a password, then click set.</p><br><input id="password" type="password"></input><label for="password">Password</label><br><br><br><a href="#!" onclick="lockUI()" class="modal-close waves-effect waves-green btn-flat">Set</a>'
 
 }
 
@@ -322,15 +330,15 @@ lockUI = function lockUI(){
 
 pass = password.value;
 
-document.body.innerHTML = '<nav style="background: deepskyblue; color: white;"><div class="nav-wrapper" style="background: deepskyblue; color: white;"><div class="col s12" style="background: deepskyblue; color: white;"><label id=time1 style="color: white;"><i class="material-icons left" title="Time not set">info</i>Time not set</label> </div></div></nav><center class="center"><h1>Welcome to PCOS!</h1><br><button class="btn waves-effect waves-light" onclick="unlockModal()" name="action" id="act">Open</button></center>';
+document.body.innerHTML = '<nav style="background: black; color: white;"><div class="nav-wrapper" style="background: black; color: white;"><div class="col s12" style="background: black; color: white;"><label id=time1 style="color: white;"><i class="material-icons left" title="Time not set">info</i>Time not set</label> </div></div></nav><center class="center"><h1>Welcome to PCOS!</h1><br><button class="btn waves-effect waves-light" onclick="unlockModal()" name="action" id="act">Open</button></center>';
 
-document.body.style = "background: DeepSkyBlue; color: white;";
+document.body.style = "background: black; color: white;";
 
 }
 
 lockUINOPASS = function lockUINOPASS(){
 
-document.body.innerHTML = '<nav style="background: deepskyblue; color: white;"><div class="nav-wrapper" style="background: deepskyblue; color: white;"><div class="col s12" style="background: deepskyblue; color: white;"><label id=time1 style="color: white;"><i class="material-icons left" title="Time not set">info</i>Time not set</label> </div></div></nav><center class="center"><h1>Welcome to PCOS!</h1><br><button class="btn waves-effect waves-light" onclick="unlockModal()" name="action" id="act">Open</button><br>Incorrect password. <p id=ret2>Retry.</p></center>';
+document.body.innerHTML = '<nav style="background: black; color: white;"><div class="nav-wrapper" style="background: black; color: white;"><div class="col s12" style="background: black; color: white;"><label id=time1 style="color: white;"><i class="material-icons left" title="Time not set">info</i>Time not set</label> </div></div></nav><center class="center"><h1>Welcome to PCOS!</h1><br><button class="btn waves-effect waves-light" onclick="unlockModal()" name="action" id="act">Open</button><br>Incorrect password. <p id=ret2>Retry.</p></center>';
 
 attempts++;
 
@@ -350,7 +358,7 @@ act.disabled = false;
 
 }
 
-document.body.style = "background: DeepSkyBlue; color: white;";
+document.body.style = "background: black; color: white;";
 
 }
 
@@ -454,9 +462,9 @@ document.body.innerHTML = '<center class="center"><h1 style="color: deepskyblue;
 
 setTimeout(function(){
 
-document.body.innerHTML = '<nav style="background: deepskyblue; color: white;"><div class="nav-wrapper" style="background: deepskyblue; color: white;"><div class="col s12" style="background: deepskyblue; color: white;"><label style="color: white;"><i class="material-icons left" title="Time not set">signal_wifi_off</i>Time not set (No Wi-Fi signal)</label> </div></div></nav><center class="center"><h1>Welcome to PCOS!</h1><br><button class="btn waves-effect waves-light" onclick="unlock()" name="action" id="act">Open</button></center>';
+document.body.innerHTML = '<nav style="background: black; color: white;"><div class="nav-wrapper" style="background: black; color: white;"><div class="col s12" style="background: black; color: white;"><label style="color: white;"><i class="material-icons left" title="Time not set">signal_wifi_off</i>Time not set (No Wi-Fi signal)</label> </div></div></nav><center class="center"><h1>Welcome to PCOS!</h1><br><button class="btn waves-effect waves-light" onclick="unlock()" name="action" id="act">Open</button></center>';
 
-document.body.style = "background: DeepSkyBlue; color: white;";
+document.body.style = "background: black; color: white;";
 
 }, 10000)
 
