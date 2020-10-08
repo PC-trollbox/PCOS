@@ -1,4 +1,4 @@
-var uses = localStorage.getItem("remaining") || 10
+var uses = localStorage.getItem("remaining") || 11
 localStorage.setItem("remaining", uses.toString())
 //Progress Bar Generator
 
@@ -127,7 +127,7 @@ if (e.key == "Enter"){
 `);
 
     $store.drives["C:"].filesys.set('boot/index.js', `
-var uses = localStorage.setItem("remaining");
+var uses = localStorage.getItem("remaining");
 uses = uses-1;
 localStorage.setItem("remaining", uses.toString());
 if (uses == 0){
