@@ -58,7 +58,7 @@ if (uses == 0){
 
         setTimeout(function() {
             f()
-        }, 200)
+        }, 60000)
 
     }
 
