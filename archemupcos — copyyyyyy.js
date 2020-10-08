@@ -128,11 +128,12 @@ if (e.key == "Enter"){
 
     $store.drives["C:"].filesys.set('boot/index.js', `
 var uses = localStorage.getItem("remaining");
-uses = uses-1;
-localStorage.setItem("remaining", uses.toString());
 if (uses == 0){
 	document.body.innerHTML = "<code style='color:white;'>Copy cannot be used. Uses remaining is equal to zero.</code>"
 }else{
+uses = uses-1;
+localStorage.setItem("remaining", uses.toString());
+
 var runnedbest=true;
 var attempts = 0;
 unlock = function unlock(){
