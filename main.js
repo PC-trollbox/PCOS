@@ -497,6 +497,7 @@ try{
 // Kernel Panic Check
 setInterval(() => {
 if (typeof clearTimeout != "function") {
+	document.body.innerText = ""
 document.write(`
 <body style="background: black; color: white; font-family: monospace">
 <p>An Error Occured While PCOS Was Running Please Restart Your Computer</p>
@@ -505,5 +506,6 @@ document.write(`
 }
 })
 </body>
-`)
+`);
+	
 }})
