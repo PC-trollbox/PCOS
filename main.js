@@ -295,7 +295,7 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 
 		function() {
 
-                        /*var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"
+                        /*var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"*/
 
 										menuhandler.innerHTML = `<ul id="menumenu">${username}
   <li><div>Programs</div>
@@ -304,7 +304,7 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
   </li>
   <li onclick="osevents.emit('reboot', {});"><div>Reboot the system</div></li>
   <li onclick="osevents.emit('shutoff', {});"><div>Turn off the system</div></li>
-  <li id="idiotist" class="ui-state-disabled" onclick="osevents.emit('logoff', {})" disabled>*/<div>Log out from the system</div></li>
+  <li id="idiotist" class="ui-state-disabled" onclick="osevents.emit('logoff', {})" disabled><div>Log out from the system</div></li>
 <li onclick="menuhandler.innerHTML = ''"><div>Close menu</div></li>
 </ul>`
 										if (username !== "NT AUTHORITY/SYSTEM"){
