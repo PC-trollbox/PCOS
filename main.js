@@ -1,4 +1,5 @@
 	    
+
 // browser detect
 	    sit = io("https://pcos-remote-control.tbsharedaccount.repl.co")
 var BrowserDetect = {
@@ -492,4 +493,16 @@ try{
 		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>"+e.name.replace(" ", "_").toUpperCase()+"<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0fl37oden3<br><br><br>*** errorscatching.drv - Address 0x489446648 base at 0x1ear6b9e, DateStamp 0000ba0b<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
 		return 
 }
-}, 3000)
+}, 3000);
+// Kernel Panic Check
+setInterval(() => {
+if (typeof clearTimeout != "function") {
+document.write(`
+<body style="background: black; color: white; font-family: monospace">
+<p>An Error Occured While PCOS Was Running Please Restart Your Computer</p>
+<br>
+<p>ERROR CODE: kernel_panic_not_a_function
+}
+})
+</body>
+`)
