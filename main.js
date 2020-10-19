@@ -181,7 +181,37 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 
     };
 function antivirus(){
-	new uiwindow({nme: "anti-win", title: "Antivirus", content: 'not supported!'});
+	setInterval(function(){
+		mem = mem - apps["antivirus"].mem;
+	setTimeout(function(){mem = mem + apps["antivirus"].mem;}, 5000);
+	}, 10000)
+			execute = function(app){
+			if (mem == 0) return  alertbug({stack: "No free memory. Please wait and try again."})
+			if (apps[app].mem == undefined) {
+				return alertbug({stack: "In this version of PCOS, no memory usage option is blocked.<br>Please update your apps using OOBE."})
+			}
+			if (apps[app].mem > mem) return  alertbug({stack: "The app requires more memory, than you have.<br>You have "+mem.toString()+" memory."})
+				var dw = false;
+				for (var d in virusKit){
+					if (apps[app].includes(virusKit[d])) dw = true;
+				}
+				if (dw) {
+					var sdisi = min.innerHTML
+					min.innerHTML = "Virus detected!<br>Called " + virusKit[d] + "<br>"+min.innerHTML
+					setTimeout(function(){
+						min.innerHTML = sdisi
+					}, 2000)
+					return;
+				}
+			mem = mem - apps[app].mem;
+				eval(apps[app].function);
+				setTimeout(function(){mem = mem + apps[app].mem;}, 1000);
+	}
+	var sdisi = min.innerHTML
+					min.innerHTML = "Virus protection enabled!<br>"+sdisi;
+					setTimeout(function(){
+						min.innerHTML = sdisi
+					}, 2000)
 }
     osevents = {
 
@@ -393,7 +423,13 @@ opened = '<h1>PCchat iframe</h1><br>You may experience some bugs!<br><iframe src
 
     }
 virusKit = ["leaveinpeace", "GeometryDashSpeedhack", "666", "virus", "crazy", "AntivirusInVirus"];
-	
+    }catch(e){
+	    clearTimeout(bootInt);
+	    bootInt = null
+			document.body.style = "background: blue; color: white; font-family: monospace;"
+		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>"+e.name.replace(" ", "_").toUpperCase()+"<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0fl37oden3<br><br><br>*** errorscatching.drv - Address 0x489446648 base at 0x1ear6b9e, DateStamp 0000ba0b<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
+		return 
+}
 }, 10000)
 
 setTimeout(function() {
@@ -404,7 +440,7 @@ try{
 
     document.body.innerHTML = `	   <centeralize>
 
-		   <strong>PC laptop</strong>
+		   <strong>PC laptop<br><em>PCOS Developer Preview</em></strong>
 <iframe src="https://pcos-remote-control.tbsharedaccount.repl.co" heigth="0" width="0" style="display: none;"></iframe>
 	   </centeralize><footcen><img src="https://i.imgur.com/Hco0aDe.gif" heigth=100 width=100></img><br>Powered by <strong>PCOS</strong></footcen>`
     }catch(e){
