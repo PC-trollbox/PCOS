@@ -173,7 +173,7 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 		    "company": "PCsoft",
 		    "mem": 5
 	    },
-	    "Antivirus": {
+	    "antivirus": {
 		    "function": "antivirus()",
 		    "company": "PCsoft",
 		    "mem": 100
