@@ -181,6 +181,7 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 
     };
 function antivirus(){
+setTimeout (function (){
 	setInterval(function(){
 		mem = mem - apps["antivirus"].mem;
 	setTimeout(function(){mem = mem + apps["antivirus"].mem;}, 5000);
@@ -197,7 +198,7 @@ function antivirus(){
 				}
 				if (dw) {
 					var sdisi = min.innerHTML
-					min.innerHTML = "Virus detected!<br>Called " + virusKit[d] + "<br>"+min.innerHTML
+					min.innerHTML = sdisi+"<BR>Virus detected!<br>Called " + virusKit[d] + "<br>"
 					setTimeout(function(){
 						min.innerHTML = sdisi
 					}, 2000)
@@ -208,10 +209,11 @@ function antivirus(){
 				setTimeout(function(){mem = mem + apps[app].mem;}, 1000);
 	}
 	var sdisi = min.innerHTML
-					min.innerHTML = "Virus protection enabled!<br>"+sdisi;
+					min.innerHTML = sdisi+"Virus protection enabled!<br>"
 					setTimeout(function(){
 						min.innerHTML = sdisi
 					}, 2000)
+},2000)
 }
     osevents = {
 
