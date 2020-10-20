@@ -305,7 +305,7 @@ function antivirus(){
                         }
 			
 				$("#menumenu").menu()
-                        new uiwindow({
+                        /*new uiwindow({
 
                             nme: "start",
 
@@ -321,7 +321,7 @@ function antivirus(){
 
                             content: cntnt
 
-                        })
+                        })*/
 
 		}
 	    	
