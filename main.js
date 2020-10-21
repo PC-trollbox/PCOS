@@ -398,7 +398,7 @@ new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protec
     uinotif = class uinotif {
 
         constructor(settings) {
-
+/*
             if (typeof settings !== "object") throw new Error("Made settings an object.")
 
             if (typeof settings.nme !== "string") throw new Error("Make name a string.")
@@ -424,6 +424,7 @@ new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protec
 	    dov.innerHTML = "(I)";
 		
             dov.appendChild(div);
+	    */
 		//nope
         }
 
