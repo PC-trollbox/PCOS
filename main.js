@@ -198,14 +198,15 @@ setTimeout (function (){
 					if (apps[app].includes(virusKit[d])) dw = true;
 				}
 				if (dw) {
-					new uinotif({nme:"AVdetect"+Math.random().toString(), content:"<BR>Virus detected!<br>Called " + virusKit[d] + "<br>"})
+					var mr = Math.random().toString();
+					new uinotif({nme:"AVdetect"+mr.toString(), content:"<BR>Virus detected!<br>Called " + virusKit[d] + "<br>", title: "New virus execution (iid" + mr.toString()+")"})
 					return;
 				}
 			mem = mem - apps[app].mem;
 				eval(apps[app].function);
 				setTimeout(function(){mem = mem + apps[app].mem;}, 1000);
 	}
-new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protection enabled!</h1>"})
+new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protection enabled!</h1>", title: "Antivirus Protection"})
 },2000)
 }
     osevents = {
