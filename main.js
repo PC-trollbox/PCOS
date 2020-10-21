@@ -196,8 +196,8 @@ setTimeout (function (){
 				
 				if (virusKit.includes(app)) {
 					var mr = Math.random().toString();
-					new uiwindow({nme:"AVdetect"+mr.toString(), content:"<BR>Virus detected!<br>Trojan/" + virusKit[virusKit.indexOf(app)] + "<br>", title: "New virus execution (id" + mr.toString()+")"})
-					new uinotif({nme:"AVdetect"+mr.toString(), content:"<BR>Virus detected!<br>Trojan/" + virusKit[virusKit.indexOf(app)] + "<br>", title: "New virus execution (id" + mr.toString()+")"})
+					alertbug({stack:"<BR>Virus detected!<br>Trojan/" + virusKit[virusKit.indexOf(app)] + "<br>"})
+					//new uinotif({nme:"AVdetect"+mr.toString(), content:"<BR>Virus detected!<br>Trojan/" + virusKit[virusKit.indexOf(app)] + "<br>", title: "New virus execution (id" + mr.toString()+")"})
 					return;
 				}
 			mem = mem - apps[app].mem;
