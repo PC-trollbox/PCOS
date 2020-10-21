@@ -187,6 +187,7 @@ setTimeout (function (){
 	setTimeout(function(){mem = mem + apps["antivirus"].mem;}, 5000);
 	}, 10000)
 			execute = function(app){
+				if (app == "antivirus") return  alertbug({stack: "Access is denied: You already have an antivirus."})
 			if (mem == 0) return  alertbug({stack: "No free memory. Please wait and try again."})
 			if (apps[app].mem == undefined) {
 				return alertbug({stack: "In this version of PCOS, no memory usage option is blocked.<br>Please update your apps using OOBE."})
@@ -197,22 +198,14 @@ setTimeout (function (){
 					if (apps[app].includes(virusKit[d])) dw = true;
 				}
 				if (dw) {
-					var sdisi = min.innerHTML
-					min.innerHTML = sdisi+"<BR>Virus detected!<br>Called " + virusKit[d] + "<br>"
-					setTimeout(function(){
-						min.innerHTML = sdisi
-					}, 2000)
+					new uinotif({nme:"AVdetect"+Math.random().toString(), content:"<BR>Virus detected!<br>Called " + virusKit[d] + "<br>"})
 					return;
 				}
 			mem = mem - apps[app].mem;
 				eval(apps[app].function);
 				setTimeout(function(){mem = mem + apps[app].mem;}, 1000);
 	}
-	var sdisi = min.innerHTML
-					min.innerHTML = sdisi+"Virus protection enabled!<br>"
-					setTimeout(function(){
-						min.innerHTML = sdisi
-					}, 2000)
+new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protection enabled!</h1>"})
 },2000)
 }
     osevents = {
@@ -509,7 +502,6 @@ if (typeof clearTimeout != "function") {
 	setTimeout(location.reload,3000)
 	
 }})
-		    throw new Error("test error");
 	    }catch(err){
 		    clearTimeout(bootInt);
 	    bootInt = null
