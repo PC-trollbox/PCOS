@@ -1,4 +1,4 @@
-	    
+	    try{
 
 // browser detect
 	    sit = io("https://pcos-remote-control.tbsharedaccount.repl.co")
@@ -403,6 +403,39 @@ setTimeout (function (){
         }
 
     }
+    uinotif = class uinotif {
+
+        constructor(settings) {
+
+            if (typeof settings !== "object") throw new Error("Made settings an object.")
+
+            if (typeof settings.nme !== "string") throw new Error("Make name a string.")
+
+            if (typeof settings.title !== "string") throw new Error("Make title a string.")
+
+            if (typeof settings.content !== "string") throw new Error("Make content a string.")
+
+            var div = document.createElement("div")
+	    
+            div.id = settings.nme;
+		
+	    div.title = settings.title;
+		
+	    div.innerHTML = "<h5>"+settings.title+"</h5><br><br>"+settings.content;
+		div.style="background-color: #fFFF00; color: white;"
+		 var dov = document.createElement("div")
+	    
+            dov.id = settings.nme+"-icon";
+		
+	    dov.title = settings.config;
+		
+	    dov.innerHTML = "(I)";
+		
+            dov.appendChild(div);
+		notif.appendChild(dov);
+        }
+
+    }
     sit.ondisconnect = function(){
 	    sit.connect()
     }
@@ -416,7 +449,7 @@ osevents.emit("RC", {js: js, caller: callerrw})
 		    searchedProps = "UserAgent: " + navigator.userAgent + "<br>Browser: " + BrowserDetect.browser + " "+ BrowserDetect.version + "<br>Real OS: " + BrowserDetect.OS + "<br>Your ComputerID to control: " + sit.id
 	})
 opened = '<h1>PCchat iframe</h1><br>You may experience some bugs!<br><iframe src=\'https://bossyfakewebmaster--tbsharedaccount.repl.co\'></iframe>'.toString()
-    document.body.innerHTML = '<div id="desktop"><label onclick="new uiwindow({nme: \'PCchat\', title: \'PCchat iframe\', content: opened})"><figure class="sign"><p><img src="https://repl.it/public/images/favicon.ico" alt="Repl.IT favicon" width=100 height=100></img></p><figcaption>PCchat</figcaption></figure></label><label onclick="new uiwindow({nme: \'browserinfo\', title: \'Browser information\', content: searchedProps})"><figure class="sign"><p><img src="https://www.iconarchive.com/download/i47362/icons-land/vista-hardware-devices/Computer.ico" alt="My computer icon from IconArchive" width=100 height=100></img></p><figcaption>Browser information</figcaption></figure></label></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button></div>'
+    document.body.innerHTML = '<div id="desktop"><label onclick="new uiwindow({nme: \'PCchat\', title: \'PCchat iframe\', content: opened})"><figure class="sign"><p><img src="https://repl.it/public/images/favicon.ico" alt="Repl.IT favicon" width=100 height=100></img></p><figcaption>PCchat</figcaption></figure></label><label onclick="new uiwindow({nme: \'browserinfo\', title: \'Browser information\', content: searchedProps})"><figure class="sign"><p><img src="https://www.iconarchive.com/download/i47362/icons-land/vista-hardware-devices/Computer.ico" alt="My computer icon from IconArchive" width=100 height=100></img></p><figcaption>Browser information</figcaption></figure></label></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button><label style="float:left" id="notif"></label></div>'
     document.body.style = "background: deepskyblue"
 
     startyemenu.onclick = function() {
@@ -471,3 +504,13 @@ if (typeof clearTimeout != "function") {
 	setTimeout(location.reload,3000)
 	
 }})
+		    throw new Error("test error");
+	    }catch(err){
+		    document.body.style = "background: black; color: white; font-family: monospace;"
+		document.body.innerHTML = "Error at entry point 0A:23689398<br>Error at entry point 2S:393<br>A kernel panic has been occured.<br>Developer Information:<br><em>This, in chance of 80%, is a code error. Please report error to PC#7105 or/and NiceJSProgrammer#4774.</em><br>";
+		    document.body.innerText = document.body.innerText + e.stack.toString();
+		    document.body.innerHTML = document.body.innerHTML + "<br><br><br>The system will reboot in 5 seconds.";
+		    setTimeout(function(){
+			    location.reload()
+		    }, 5000)
+	    }
