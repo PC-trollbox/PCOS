@@ -517,6 +517,6 @@ if (typeof clearTimeout != "function") {
 	    timerToBOOT = null
 		    document.body.style = "background: black; color: white; font-family: monospace;"
 		document.body.innerHTML = "Error at entry point 0A:23689398<br>Error at entry point 2S:393<br>A kernel panic has been occured.<br>Developer Information:<br><em>This, in chance of 80%, is a code error. Please report error to PC#7105 or/and NiceJSProgrammer#4774.</em><br>";
-		    document.body.innerText = document.body.innerText + e.stack.toString();
+		    document.body.innerText = document.body.innerText + err.stack.toString();
 		    document.body.innerHTML = document.body.innerHTML + "<br><br><br>You can only reboot the system manually.";
 	    }
