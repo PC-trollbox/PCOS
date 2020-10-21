@@ -193,13 +193,11 @@ setTimeout (function (){
 				return alertbug({stack: "In this version of PCOS, no memory usage option is blocked.<br>Please update your apps using OOBE."})
 			}
 			if (apps[app].mem > mem) return  alertbug({stack: "The app requires more memory, than you have.<br>You have "+mem.toString()+" memory."})
-				var dw = false;
-				for (var d in virusKit){
-					if (app.includes(virusKit[d])) dw = true;
-				}
-				if (dw) {
+				
+				if (virusKit.includes(app)) {
 					var mr = Math.random().toString();
-					new uinotif({nme:"AVdetect"+mr.toString(), content:"<BR>Virus detected!<br>Called " + virusKit[d] + "<br>", title: "New virus execution (iid" + mr.toString()+")"})
+					new uiwindow({nme:"AVdetect"+mr.toString(), content:"<BR>Virus detected!<br>Called " + virusKit[d] + "<br>", title: "New virus execution (id" + mr.toString()+")"})
+					new uinotif({nme:"AVdetect"+mr.toString(), content:"<BR>Virus detected!<br>Called " + virusKit[d] + "<br>", title: "New virus execution (id" + mr.toString()+")"})
 					return;
 				}
 			mem = mem - apps[app].mem;
