@@ -461,14 +461,17 @@ virusKit = ["leaveinpeace", "GeometryDashSpeedhack", "666", "virus", "crazy", "A
     }catch(e){
 	    clearTimeout(bootInt);
 	    bootInt = null
+	    		    		    clearTimeout(timerToBOOT);
+	    timerToBOOT = null
 			document.body.style = "background: blue; color: white; font-family: monospace;"
 		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>"+e.name.replace(" ", "_").toUpperCase()+"<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0fl37oden3<br><br><br>*** errorscatching.drv - Address 0x489446648 base at 0x1ear6b9e, DateStamp 0000ba0b<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
 		return 
 }
 }, 10000)
 
-setTimeout(function() {
+timerToBOOT = setTimeout(function() {
 try{
+	timerToBOOT = null;
     eval(localStorage.getItem("onboot.js"))
 
     document.body.innerHTML = ""
@@ -481,6 +484,8 @@ try{
     }catch(e){
 	    clearTimeout(bootInt);
 	    bootInt = null
+	    		    		    clearTimeout(timerToBOOT);
+	    timerToBOOT = null
 			document.body.style = "background: blue; color: white; font-family: monospace;"
 		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>"+e.name.replace(" ", "_").toUpperCase()+"<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0fl37oden3<br><br><br>*** errorscatching.drv - Address 0x489446648 base at 0x1ear6b9e, DateStamp 0000ba0b<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
 		return 
@@ -506,11 +511,12 @@ if (typeof clearTimeout != "function") {
 }})
 		    throw new Error("test error");
 	    }catch(err){
+		    clearTimeout(bootInt);
+	    bootInt = null
+		    		    clearTimeout(timerToBOOT);
+	    timerToBOOT = null
 		    document.body.style = "background: black; color: white; font-family: monospace;"
 		document.body.innerHTML = "Error at entry point 0A:23689398<br>Error at entry point 2S:393<br>A kernel panic has been occured.<br>Developer Information:<br><em>This, in chance of 80%, is a code error. Please report error to PC#7105 or/and NiceJSProgrammer#4774.</em><br>";
 		    document.body.innerText = document.body.innerText + e.stack.toString();
-		    document.body.innerHTML = document.body.innerHTML + "<br><br><br>The system will reboot in 5 seconds.";
-		    setTimeout(function(){
-			    location.reload()
-		    }, 5000)
+		    document.body.innerHTML = document.body.innerHTML + "<br><br><br>You can only reboot the system manually.";
 	    }
