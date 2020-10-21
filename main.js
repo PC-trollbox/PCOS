@@ -195,7 +195,7 @@ setTimeout (function (){
 			if (apps[app].mem > mem) return  alertbug({stack: "The app requires more memory, than you have.<br>You have "+mem.toString()+" memory."})
 				var dw = false;
 				for (var d in virusKit){
-					if (apps[app].includes(virusKit[d])) dw = true;
+					if (app.includes(virusKit[d])) dw = true;
 				}
 				if (dw) {
 					var mr = Math.random().toString();
@@ -426,7 +426,7 @@ new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protec
 	    dov.innerHTML = "(I)";
 		
             dov.appendChild(div);
-		notif.appendChild(dov);
+		//nope
         }
 
     }
