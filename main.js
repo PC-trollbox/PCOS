@@ -346,6 +346,11 @@ sys32 = {desktop: {
 			if (this.BackupDesktop == undefined) return "no";
 			document.body.innerHTML = this.BackupDesktop;
 			document.body.style = "background: deepskyblue";
+			    startyemenu.onclick = function() {
+
+        osevents.emit('startmenu', '')
+
+    }
 			this.BackupDesktop = undefined;
 			return "ok";
 		}
