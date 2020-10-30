@@ -410,7 +410,7 @@ sys32 = {desktop: {
             if (typeof settings.title !== "string") throw new Error("Make title a string.")
 
             if (typeof settings.content !== "string") throw new Error("Make content a string.")
-
+				if (document.getElementById(settings.nme) != null) return alertbug({stack: "The application needs to draw a new window with the same ID.<br>Please close window, which name is:<br>"+settings.title+"<br>or with the codename (if you know)"+settings.nme+"<br>and try again."})
             var div = document.createElement("div")
 	    
             div.id = settings.nme;
@@ -418,10 +418,22 @@ sys32 = {desktop: {
 	    div.title = settings.title;
 		
 	    div.innerHTML = settings.content;
-		
             desktop.appendChild(div);
-
-		$("#"+settings.nme).dialog()
+		$("#"+settings.nme).dialog({
+            resizable: settings.isresizable,
+            height: settings.height,
+            width: settings.width,
+            position: settings.position,
+	    buttons: settings.buttons,
+	    modal: settings.modal,
+	    close: function(event, ui){
+		    document.getElementById(settings.nme).remove();
+		    return settings.closefunc(event, ui);
+	    },
+	    beforeclose: function(event, ui){
+		   return settings.beforeclosefunc(event, ui);
+	    }
+		})
         }
 
     }
