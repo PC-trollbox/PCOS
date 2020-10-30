@@ -428,10 +428,12 @@ sys32 = {desktop: {
 	    modal: settings.modal,
 	    close: function(event, ui){
 		    document.getElementById(settings.nme).remove();
-		    return settings.closefunc(event, ui);
+		    if (typeof settings.beforeclosefunc == "function") return settings.closefunc(event, ui);
+		    return true;
 	    },
 	    beforeclose: function(event, ui){
-		   return settings.beforeclosefunc(event, ui);
+		   if (typeof settings.beforeclosefunc == "function") return settings.beforeclosefunc(event, ui);
+		    return true;
 	    }
 		})
         }
