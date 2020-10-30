@@ -334,28 +334,37 @@ new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protec
         }
 
     }
-sys32 = {desktop: {BackupDesktop: null, SwitchToSecureDesktop: function(){
-	if (this.BackupDesktop != undefined) return "no";
-	this.BackupDesktop = document.body.innerHTML;
-	document.body.innerHTML = `<b>This is Secure Desktop.</b><em>Some program required PCOS to enter this mode.<br>We switched you to the secure desktop.</em><br><br><div id="desktop"></div>`
-	document.body.style = "background: #056aa5;"
-	return "ok"
-}, SwitchToDefault: function(){
-	if (this.BackupDesktop == undefined) return "no";
-	document.body.innerHTML = this.BackupDesktop;
-	this.BackupDesktop = undefined;
-	return "ok"
-}}, users: {logout: function(){
-	if (!confirm("Do you want to log out from the system?")) return "no";
-	osevents.emit("logoff", {});
-}, loginToAdminAccount: function(exec){
-	if (!confirm("Some program required elevation (Run As Administrator) to run this program.\n\n"+exec+"\nDo you allow this action?")) return "User declined."
-	var olduser = username;
-	username = "Administrator";
-	execute(exec);
-	username = olduser;
-	return "User agreed.";
-}}}
+sys32 = {desktop: {
+		BackupDesktop: null, 
+		SwitchToSecureDesktop: function(){
+			if (this.BackupDesktop != undefined) return "no";
+			this.BackupDesktop = document.body.innerHTML;
+			document.body.innerHTML = `<b>This is Secure Desktop.</b><em>Some program required PCOS to enter this mode.<br>We switched you to the secure desktop.</em><br><br><div id="desktop"></div>`
+			document.body.style = "background: #056aa5;"
+			return "ok";
+		}, SwitchToDefault: function(){
+			if (this.BackupDesktop == undefined) return "no";
+			document.body.innerHTML = this.BackupDesktop;
+			document.body.style = "background: deepskyblue";
+			this.BackupDesktop = undefined;
+			return "ok";
+		}
+	},
+	users: {
+		logout: function(){
+			if (!confirm("Do you want to log out from the system?")) return "User declined.";
+			osevents.emit("logoff", {});
+			return "User agreed.";
+		}, loginToAdminAccount: function(exec){
+			if (!confirm("Some program required elevation (Run As Administrator) to run this program.\n\n"+exec+"\nDo you allow this action?")) return "User declined."
+			var olduser = username;
+			username = "Administrator";
+			execute(exec);
+			username = olduser;
+			return "User agreed.";
+		}
+	}
+}
     alertbug = function(e) {
 
         var idiot = 0;
