@@ -113,18 +113,20 @@ var ev = eval(localStorage.getItem("login.exe"))
 		}
 		mem = 1000;
 		execute = function(app){
-			if (mem == 0) return  alertbug({stack: "No free memory. Please wait and try again."})
+			if (mem == 0) return  alertbug({stack: "Нет больше памяти. Подождите и попробуйте снова."})
 			if (apps[app].mem == undefined) {
-				return alertbug({stack: "In this version of PCOS, no memory usage option is blocked.<br>Please update your apps using OOBE."})
+				return alertbug({stack: "В этой PCOS, параметр без памяти - запрещён.<br>Пожалуйста, обновите приложения используя OOBE."})
 			}
-			if (apps[app].mem > mem) return  alertbug({stack: "The app requires more memory, than you have.<br>You have "+mem.toString()+" memory."})
+			if (apps[app].mem > mem) return  alertbug({stack: "Приложение просит больше памяти, чем у вас есть.<br>У вас "+mem.toString()+" памяти."})
+				
+				
 			mem = mem - apps[app].mem;
 				eval(apps[app].function);
 				setTimeout(function(){mem = mem + apps[app].mem;}, 1000);
 	}
     apps = JSON.parse(localStorage.getItem("apps")) || {
 
-        "shutdown": {
+        "выключить": {
 
             "company": "PCsoft",
 
@@ -133,7 +135,7 @@ var ev = eval(localStorage.getItem("login.exe"))
 		"mem": 0
 
         },
-	"eval": {
+	"запуск": {
 		"company": "PCsoft",
 		"function": `
 func = function func(){
@@ -144,20 +146,20 @@ new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=last
 `,
 		"mem": 10
 	},
-	    "memory": {
+	    "память": {
 		    "company": "PCsoft",
 		"function": `
-new uiwindow({nme: "mem-usage", title: "Memory usage", content: "Memory:<br>"+mem})
+new uiwindow({nme: "mem-usage", title: "Использование памяти", content: "Память:<br>"+mem})
 `,
 		"mem": 1
 	    },
-	    "notepad": {
+	    "блокнот": {
 		    "function": `
 
 Select = function Select(){
-var filename = prompt("Input filename") || "new"
+var filename = prompt("Имя файла?") || "new"
 if (!localStorage.getItem(filename)){
-var sel = confirm("No file called \\"" +filename+"\\" found.\\nCreate one?")
+var sel = confirm("Не нашел файла \\"" +filename+"\\".\\Сделать такой?")
 if (sel) localStorage.setItem(filename, "")
 return "duck"
 }
@@ -165,15 +167,15 @@ document.getElementById("notepadwindowtext").value = localStorage.getItem(filena
 }
 
 Save = function Save(){
-var filename = prompt("Input filename") || "new"
+var filename = prompt("Имя файла?") || "new"
 localStorage.setItem(filename, document.getElementById("notepadwindowtext").value)
 }
 
-new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onclick=Select()>Open</button> | <button onclick=Save()>Save as</button><br><textarea type="text" size="50" id="notepadwindowtext" maxlength="1000000"style="font-family: Arial;font-size: 12pt; width:100%;height:95%"></textarea>'})`,
+new uiwindow({nme: "note-win", title: "Безымянный - Блокнот", content: '<button onclick=Select()>Открыть</button> | <button onclick=Save()>Сохранить как</button><br><textarea type="text" size="50" id="notepadwindowtext" maxlength="1000000"style="font-family: Arial;font-size: 12pt; width:100%;height:95%"></textarea>'})`,
 		    "company": "PCsoft",
 		    "mem": 5
 	    },
-	    "antivirus": {
+	    "антивирус": {
 		    "function": "antivirus()",
 		    "company": "PCsoft",
 		    "mem": 100
@@ -187,24 +189,24 @@ setTimeout (function (){
 	setTimeout(function(){mem = mem + apps["antivirus"].mem;}, 5000);
 	}, 10000)
 			execute = function(app){
-				if (app == "antivirus") return  alertbug({stack: "Access is denied: You already have an antivirus."})
-			if (mem == 0) return  alertbug({stack: "No free memory. Please wait and try again."})
+				if (app == "antivirus") return  alertbug({stack: "Доступ запрещён: У вас уже есть антивирус."})
+			if (mem == 0) return  alertbug({stack: "Нет больше памяти. Подождите и попробуйте снова."})
 			if (apps[app].mem == undefined) {
-				return alertbug({stack: "In this version of PCOS, no memory usage option is blocked.<br>Please update your apps using OOBE."})
+				return alertbug({stack: "В этой PCOS, параметр без памяти - запрещён.<br>Пожалуйста, обновите приложения используя OOBE."})
 			}
-			if (apps[app].mem > mem) return  alertbug({stack: "The app requires more memory, than you have.<br>You have "+mem.toString()+" memory."})
+			if (apps[app].mem > mem) return  alertbug({stack: "Приложение просит больше памяти, чем у вас есть.<br>У вас "+mem.toString()+" памяти."})
 				
 				if (virusKit.includes(app)) {
 					var mr = Math.random().toString();
-					alertbug({stack:"<BR>Virus detected!<br>Trojan/" + virusKit[virusKit.indexOf(app)] + "<br>"})
-					//new uinotif({nme:"AVdetect"+mr.toString(), content:"<BR>Virus detected!<br>Trojan/" + virusKit[virusKit.indexOf(app)] + "<br>", title: "New virus execution (id" + mr.toString()+")"})
+					alertbug({stack:"<BR>Обнаружен вирус!!<br>Trojan/" + virusKit[virusKit.indexOf(app)] + "<br>"})
+					//new uinotif({nme:"AVdetect"+mr.toString(), content:"<BR>Обнаружен вирус!<br>Trojan/" + virusKit[virusKit.indexOf(app)] + "<br>", title: "Новый запуск вируса (id" + mr.toString()+")"})
 					return;
 				}
 			mem = mem - apps[app].mem;
 				eval(apps[app].function);
 				setTimeout(function(){mem = mem + apps[app].mem;}, 1000);
 	}
-new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protection enabled!</h1>", title: "Antivirus Protection"})
+new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Включена защита от вирусов!</h1>", title: "Защита антивируса"})
 },2000)
 }
     osevents = {
@@ -241,11 +243,11 @@ new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protec
 
 		    
 		    document.body.style="background:#0078D7;"
-		    document.body.innerHTML="<centeralize><img src='https://i.imgur.com/Hco0aDe.gif' heigth=100 width=100></img> Shutting down...</centeralize><footcen>PCOS Professional</footcen>"
+		    document.body.innerHTML="<centeralize><img src='https://i.imgur.com/Hco0aDe.gif' heigth=100 width=100></img>Выключение...</centeralize><footcen>PCOS Профессиональная</footcen>"
 
                 setTimeout(function() {
 
-                    document.body.innerHTML = "It is now safe to turn off your computer.";
+                    document.body.innerHTML = "Теперь питание компьютера можно отключить..";
 
                     document.body.style = "color: white; background: black; font-family: monospace"
 
@@ -254,12 +256,12 @@ new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protec
 }],
 		reboot: [function(){
 			document.body.style="background:#0078D7;"
-			document.body.innerHTML="<centeralize><img src='https://i.imgur.com/Hco0aDe.gif' heigth=100 width=100></img> Restarting...</centeralize><footcen>PCOS Professional</footcen>"
+			document.body.innerHTML="<centeralize><img src='https://i.imgur.com/Hco0aDe.gif' heigth=100 width=100></img> Перезагрузка...</centeralize><footcen>PCOS Профессиональная</footcen>"
 
 
                 setTimeout(function() {
 
-                    document.body.innerHTML = "It is now safe to reboot your computer.";
+                    document.body.innerHTML = "Теперь питание компьютера можно перезагрузить..";
 
                     document.body.style = "color: white; background: black; font-family: monospace"
 			
@@ -278,14 +280,14 @@ new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Virus protec
                         /*var cntnt = "PCOS Start Menu<br>Add apps using JS.<br>"*/
 
 										menuhandler.innerHTML = `<ul id="menumenu">${username}
-  <li><div>Programs</div>
+  <li><div>Программы</div>
     <ul id=gu>
     </ul>
   </li>
-  <li onclick="osevents.emit('reboot', {});"><div>Reboot the system</div></li>
-  <li onclick="osevents.emit('shutoff', {});"><div>Turn off the system</div></li>
-  <li id="idiotist" class="ui-state-disabled" onclick="osevents.emit('logoff', {})" disabled><div>Log out from the system</div></li>
-<li onclick="menuhandler.innerHTML = ''"><div>Close menu</div></li>
+  <li onclick="osevents.emit('reboot', {});"><div>Перезапуск</div></li>
+  <li onclick="osevents.emit('shutoff', {});"><div>Выключение</div></li>
+  <li id="idiotist" class="ui-state-disabled" onclick="osevents.emit('logoff', {})" disabled><div>Выйти из системы.</div></li>
+<li onclick="menuhandler.innerHTML = ''"><div>Закрыть меню</div></li>
 </ul>`
 										if (username !== "NT AUTHORITY/SYSTEM"){
 											idiotist.disabled = false;
@@ -339,7 +341,7 @@ sys32 = {desktop: {
 		SwitchToSecureDesktop: function(){
 			if (this.BackupDesktop != undefined) return "no";
 			this.BackupDesktop = document.body.innerHTML;
-			document.body.innerHTML = `<b>This is Secure Desktop.</b><em>Some program required PCOS to enter this mode.<br>We switched you to the secure desktop.</em><br><br><div id="desktop"></div>`
+			document.body.innerHTML = `<b>Это безопасный рабочий стол.</b><em>Какая-то программа запросила PCOS запуск в этом режиме.<br>Мы переключили вас на безопасный рабочий стол..</em><br><br><div id="desktop"></div>`
 			document.body.style = "background: #056aa5;"
 			return "ok";
 		}, SwitchToDefault: function(){
@@ -357,11 +359,11 @@ sys32 = {desktop: {
 	},
 	users: {
 		logout: function(){
-			if (!confirm("Do you want to log out from the system?")) return "User declined.";
+			if (!confirm("Вы хотите выйти из системы?")) return "User declined.";
 			osevents.emit("logoff", {});
 			return "User agreed.";
 		}, loginToAdminAccount: function(exec){
-			if (!confirm("Some program required elevation (Run As Administrator) to run this program.\n\n"+exec+"\nDo you allow this action?")) return "User declined."
+			if (!confirm("Какая-то программа запросила запуск с повышением (Запустить от имени администратора) этого приложения.\n\n"+exec+"\nВы подтверждаете это действие?")) return "User declined."
 			var olduser = username;
 			username = "Administrator";
 			execute(exec);
@@ -398,7 +400,7 @@ sys32 = {desktop: {
 
             title: "Ошибка!",
 
-            content: "Произошла следующая ошибка:<br><b>" + e.stack.replace("\n", "<br>") + "</b><br><br>Это ошибка в программе <br>Please contact everyone who can code, the developer of the program and/or PCsoft.<br>They will help you with this error.<br>ERROR ID: <b>" + idiot.toString(18).substring(2) + "</b><button onclick='errrep.remove()'>Close</button>"
+            content: "Произошла следующая ошибка:<br><b>" + e.stack.replace("\n", "<br>") + "</b><br><br>Это ошибка в программе разработчика или системная ошибка.<br>Пожалуйста, свяжитесь со всеми кто может программировать, с разработчиком и/или PCsoft.<br>Они помогут вам разобраться с этой ошибкой.<br>ID ошибки: <b>" + idiot.toString(18).substring(2) + "</b><button onclick='errrep.remove()'>Закрыть</button>"
 
         })
 
@@ -415,7 +417,7 @@ sys32 = {desktop: {
             if (typeof settings.title !== "string") throw new Error("Make title a string.")
 
             if (typeof settings.content !== "string") throw new Error("Make content a string.")
-				if (document.getElementById(settings.nme) != null) return alertbug({stack: "The application needs to draw a new window with the same ID.<br>Please close window, which name is:<br>"+settings.title+"<br>or with the codename (if you know)"+settings.nme+"<br>and try again."})
+				if (document.getElementById(settings.nme) != null) return alertbug({stack: "Приложению необходимо прорисовать окно с таким же ID.<br>Пожалуйста, закройте окно с заголовком:<br>"+settings.title+"<br>или с кодовым именем (если знаешь)"+settings.nme+"<br>и попробуй снова."})
             var div = document.createElement("div")
 	    
             div.id = settings.nme;
