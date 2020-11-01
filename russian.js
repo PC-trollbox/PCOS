@@ -502,6 +502,7 @@ opened = '<iframe height=345 width=499 src=\'https://bossyfakewebmaster--tbshare
 
     }
 virusKit = ["leaveinpeace", "GeometryDashSpeedhack", "666", "virus", "crazy", "AntivirusInVirus"];
+eval(localStorage.getItem("afterboot.js"))
     }catch(e){
 	    clearTimeout(bootInt);
 	    bootInt = null
