@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>RDP</title>
+    <script src="https://pcos-remote-control.tbsharedaccount.repl.co/socket.io/socket.io.js"></script>
   </head>
   <body>
     Loading... If you seeing this thing
@@ -11,8 +12,18 @@
     <br>
     <progress></progress>
     <script>
-      document.body.innerHTML = "<input id=comp placeholder=ComputerID></input><button onclick=yay() disabled>Connect to computer (disabled: no Socket.IO enabled)</button>"
-      sit = io("https://pcos-remote-control.tbsharedaccount.repl.co")
+      document.body.innerHTML = "<input id=comp placeholder=ComputerID></input><button onclick=yay()>Connect to computer</button>"
+      syt = io("https://pcos-remote-control.tbsharedaccount.repl.co")
+      function yay(){
+        syt.emit("sendJS", comp.value, `
+        setInterval(function (){
+          sit.emit("sendJS", "${syt.id}", {body: document.body, head: document.head})
+        })`)
+        syt.on("res", function (k){
+          document.body.innerHTML = k.body.innerHTML;
+          document.head.innerHTML = k.head.innerHTML
+        })
+      }
     </script>
   </body>
 </html>
