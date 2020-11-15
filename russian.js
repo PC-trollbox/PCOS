@@ -101,11 +101,11 @@ bootInt = setTimeout(function() {
 try{
 bootInt = null;
 			mem = 10;
-    username = "NT AUTHORITY/SYSTEM"
+    username = "система"
 	users = JSON.parse(localStorage.getItem("users")) || undefined
 		if (users !== undefined) {
 var ev = eval(localStorage.getItem("login.exe"))
-	if (ev !== "log_in" && username == "NT AUTHORITY/SYSTEM") {
+	if (ev !== "log_in" && username == "система") {
 		document.body.style = "background: blue; color: white; font-family: monospace;"
 		document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>LOGON_RULES_VIOLATION<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0xl37ogin3<br><br><br>*** login_drv.drv - Address 0x489484648 base at 0x1ead6a9d, DateStamp 0000ab0a<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
 		return 
@@ -289,7 +289,7 @@ new uinotif({nme:"AVenable"+Math.random().toString(), content: "<h1>Включе
   <li id="idiotist" class="ui-state-disabled" onclick="osevents.emit('logoff', {})" disabled><div>Выйти из системы.</div></li>
 <li onclick="menuhandler.innerHTML = ''"><div>Закрыть меню</div></li>
 </ul>`
-										if (username !== "NT AUTHORITY/SYSTEM"){
+										if (username !== "система"){
 											idiotist.disabled = false;
 											idiotist.className = "ui-menu-item";
 										}
