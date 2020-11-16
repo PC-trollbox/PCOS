@@ -32,7 +32,7 @@ if (d) return;
 document.body.innerHTML = "<input id=comp value=\""+comp.value+"\"></input><button onclick=yay()>Connect to computer</button><br><br><em>This computer is turned off, repeat attempt if not.</em>";
 
 }, 1000)
-if (!d) return
+if (d) return
 setTimeout (function (){yay()}, 1500)
 }
     </script>
