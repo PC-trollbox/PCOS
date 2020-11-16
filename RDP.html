@@ -17,12 +17,16 @@
       function yay(){
 var int = setInterval(function(){
 var d = false;
-syt.emit("sendJS", comp.value, `JSON.stringify({body: document.body.innerHTML, head: document.head.innerHTML})`)
+syt.emit("sendJS", comp.value, `JSON.stringify({body: document.body.innerHTML, head: document.head.innerHTML, bodystyle: document.body.style.cssText})`)
 syt.on("res", function (k){
 d = true;
 k = JSON.parse(k);
 document.body.innerHTML = "<input id=comp disabled value=\""+comp.value+"\"></input><br>"+k.body;
 document.head.innerHTML = k.head;
+document.body.style.cssText=k.bodystyle
+document.querySelectorAll("*").forEach(function (dr){
+dr.onclick = "syt.emit(\"sendJS\", comp.value, `"+dr.onclick.toString()"+`)"
+})
 })
 setTimeout(function(){
 if (d) return;
