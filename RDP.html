@@ -25,7 +25,7 @@ document.body.innerHTML = "<input id=comp disabled value=\""+comp.value+"\"></in
 document.head.innerHTML = k.head;
 document.body.style.cssText=k.bodystyle
 document.querySelectorAll("*").forEach(function (dr){
-dr.onclick = "syt.emit(\"sendJS\", comp.value, `"+dr.onclick.toString()+"`)"
+dr.onclick = "syt.emit(\"sendJS\", comp.value, `"+String(dr.onclick)+"`)"
 })
 })
 setTimeout(function(){
