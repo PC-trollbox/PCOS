@@ -494,11 +494,7 @@ opened = '<iframe height=345 width=499 src=\'https://bossyfakewebmaster--tbshare
     document.body.innerHTML = '<div id="desktop"><label onclick="new uiwindow({nme: \'PCchat\', title: \'PCchat iframe\', content: opened, width: 499, height: 345})"><figure class="sign"><p><img src="https://repl.it/public/images/favicon.ico" alt="Repl.IT favicon" width=100 height=100></img></p><figcaption>PCchat</figcaption></figure></label><label onclick="new uiwindow({nme: \'browserinfo\', title: \'Browser information\', content: searchedProps})"><figure class="sign"><p><img src="https://www.iconarchive.com/download/i47362/icons-land/vista-hardware-devices/Computer.ico" alt="My computer icon from IconArchive" width=100 height=100></img></p><figcaption>Browser information</figcaption></figure></label></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button><label style="float:left" id="notif"></label></div>'
     document.body.style = "background: deepskyblue"
 
-    startyemenu.onclick = function() {
-
-        osevents.emit('startmenu', '')
-
-    }
+    startyemenu.setAttribute('onclick', "osevents.emit('startmenu', {})")
 virusKit = ["leaveinpeace", "GeometryDashSpeedhack", "666", "virus", "crazy", "AntivirusInVirus"];
 eval(localStorage.getItem("afterboot.js"))
     }catch(e){
