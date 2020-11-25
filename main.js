@@ -7,9 +7,11 @@ document.body.innerHTML = `	   <centeralize>
 	   </centeralize><footcen><img src="https://i.imgur.com/Hco0aDe.gif" heigth=100 width=100></img><br><em>Repairing your computer...</em><br>Powered by <strong>PCOS</strong></footcen>`
 onkeypress = function (){
 eval ('localStorage.getItem("booted", "1"); "1"')
+location.reload()
 }
 onclick = function (){
 eval ('localStorage.getItem("booted", "1"); "1"')
+location.reload()
 }
 setTimeout (function (){
 eval ('localStorage.getItem("booted", "1"); "1"')
