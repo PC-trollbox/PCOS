@@ -1,3 +1,24 @@
+
+var bootes = localStorage.getItem("booted"); || eval ('localStorage.getItem("booted", "1"); "1"')
+if (bootes == "0") {
+document.body.innerHTML = `	   <centeralize>
+		   <strong>PC laptop<br><em>PCOS Developer Preview</em><br>Нажмите любую клавишу/Нажмите на экран чтобы остановить проверку.</strong>
+<iframe src="https://pcos-remote-control.tbsharedaccount.repl.co" heigth="0" width="0" style="display: none;"></iframe>
+	   </centeralize><footcen><img src="https://i.imgur.com/Hco0aDe.gif" heigth=100 width=100></img><br><em>Восстановление вашего компьютера...</em><br>Powered by <strong>PCOS</strong></footcen>`
+document.body.onkeypress = function (){
+eval ('localStorage.getItem("booted", "1"); "1"')
+}
+document.body.onclick = function (){
+eval ('localStorage.getItem("booted", "1"); "1"')
+}
+setTimeout (function (){
+localStorage.clear()
+location.reload()
+},10000)
+
+throw new Error("Repairing")
+}
+localStorage.setItem("booted", "0")
 	    try{
 
 // browser detect
