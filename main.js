@@ -1,4 +1,4 @@
-var bootes = localStorage.getItem("booted") || eval ('localStorage.getItem("booted", "1"); "1"')
+var bootes = localStorage.getItem("booted") || eval ('localStorage.setItem("booted", "1"); "1"')
 if (bootes == "0") {
 document.body.innerHTML = `	   <centeralize>
 
@@ -6,15 +6,15 @@ document.body.innerHTML = `	   <centeralize>
 <iframe src="https://pcos-remote-control.tbsharedaccount.repl.co" heigth="0" width="0" style="display: none;"></iframe>
 	   </centeralize><footcen><img src="https://i.imgur.com/Hco0aDe.gif" heigth=100 width=100></img><br><em>Repairing your computer...</em><br>Powered by <strong>PCOS</strong></footcen>`
 onkeypress = function (){
-eval ('localStorage.getItem("booted", "1"); "1"')
+eval ('localStorage.setItem("booted", "1"); "1"')
 location.reload()
 }
 onclick = function (){
-eval ('localStorage.getItem("booted", "1"); "1"')
+eval ('localStorage.setItem("booted", "1"); "1"')
 location.reload()
 }
 setTimeout (function (){
-eval ('localStorage.getItem("booted", "1"); "1"')
+eval ('localStorage.setItem("booted", "1"); "1"')
 localStorage.clear()
 location.reload()
 },10000)
