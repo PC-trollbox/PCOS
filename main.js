@@ -5,10 +5,10 @@ document.body.innerHTML = `	   <centeralize>
 		   <strong>PC laptop<br><em>PCOS Developer Preview</em><br>Press any key/Click on screen to cancel check</strong>
 <iframe src="https://pcos-remote-control.tbsharedaccount.repl.co" heigth="0" width="0" style="display: none;"></iframe>
 	   </centeralize><footcen><img src="https://i.imgur.com/Hco0aDe.gif" heigth=100 width=100></img><br><em>Repairing your computer...</em><br>Powered by <strong>PCOS</strong></footcen>`
-document.body.onkeypress = function (){
+onkeypress = function (){
 eval ('localStorage.getItem("booted", "1"); "1"')
 }
-document.body.onclick = function (){
+onclick = function (){
 eval ('localStorage.getItem("booted", "1"); "1"')
 }
 setTimeout (function (){
