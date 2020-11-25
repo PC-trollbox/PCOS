@@ -1,5 +1,5 @@
 
-var bootes = localStorage.getItem("booted"); || eval ('localStorage.getItem("booted", "1"); "1"')
+var bootes = localStorage.getItem("booted") || eval ('localStorage.getItem("booted", "1"); "1"')
 if (bootes == "0") {
 document.body.innerHTML = `	   <centeralize>
 		   <strong>PC laptop<br><em>PCOS Developer Preview</em><br>Нажмите любую клавишу/Нажмите на экран чтобы остановить проверку.</strong>
