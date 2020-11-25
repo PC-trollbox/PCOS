@@ -1,4 +1,4 @@
-var bootes = localStorage.getItem("booted"); || eval ('localStorage.getItem("booted", "1"); "1"')
+var bootes = localStorage.getItem("booted") || eval ('localStorage.getItem("booted", "1"); "1"')
 if (bootes == "0") {
 document.body.innerHTML = `	   <centeralize>
 
