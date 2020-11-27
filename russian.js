@@ -1,4 +1,4 @@
-
+ComputerID = localStorage.getItem("cid") || 'Не установлен. Нажмите <a href="javascript:void(0)" onclick="execute(\'ComputerID\')"> чтобы поставить ваш ID.'
 var bootes = localStorage.getItem("booted") || eval ('localStorage.setItem("booted", "1"); "1"')
 if (bootes == "0") {
 document.body.innerHTML = `	   <centeralize>
@@ -147,6 +147,14 @@ var ev = eval(localStorage.getItem("login.exe"))
 				eval(apps[app].function);
 				setTimeout(function(){mem = mem + apps[app].mem;}, 1000);
 	}
+		ChangeCID = function(cid){
+		sys32.desktop.SwitchToSecureDesktop();
+		sit.disconnect();
+		sit.connect();
+		sit.emit("ComputerID", cid);
+		alertbug({stack: "Changed successfully. If you see an already taken window. Please say me."});
+		sys32.desktop.SwitchToDefault();
+	}
     apps = JSON.parse(localStorage.getItem("apps")) || {
 
         "выключить": {
@@ -202,6 +210,16 @@ new uiwindow({nme: "note-win", title: "Безымянный - Блокнот", c
 		    "function": "antivirus()",
 		    "company": "PCsoft",
 		    "mem": 100
+	    },
+	    
+	    
+	    "ComputerID": {
+		    "function": `ChangeComputerID = function(){
+			new uiwindow({nme: "cidchange", title: "ComputerID", content: '<input id=CompID></input><button onclick=ChangeCID(CompID.value)>Изменить</button><br>Примечание: Это изменит весь ComputerID, и отключит все соединения если некоторые есть.'})
+		    }
+		    new uiwindow({nme: "cid", title: "ComputerID", content: 'ComputerID сейчас: ${ComputerID}.<br><button onclick=\"ChangeComputerID()\">Изменить ComputerID</button>'})`,
+		    "company": "ComputerID PCsoft",
+		    "mem": 10
 	    }
 
     };
@@ -526,6 +544,18 @@ opened = '<iframe height=345 width=499 src=\'https://bossyfakewebmaster--tbshare
     }
 virusKit = ["leaveinpeace", "GeometryDashSpeedhack", "666", "virus", "crazy", "AntivirusInVirus"];
 eval(localStorage.getItem("afterboot.js"))
+		localStorage.setItem("booted", "1")
+		if (ComputerID != 'Не установлен. Нажмите <a href="javascript:void(0)" onclick="execute(\'ComputerID\')"> чтобы поставить ваш ID.')
+	{
+		sit.emit("ComputerID", ComputerID);
+		sit.on("errorGetting", function(errorid){
+			if (errorid == "00278"){
+				sys32.desktop.SwitchToSecureDesktop()
+				new uiwindow({nme: "note-win-comp", title: "ComputerID", content: 'Ваш ComputerID уже используется<br>Пожалуйста установите новый ID и нажмите OK.<br><button onclick=ChangeCID(ComputerID)>OK</button>'})
+				execute("ComputerID")
+			}
+		})
+	}
     }catch(e){
 	    clearTimeout(bootInt);
 	    bootInt = null
