@@ -1,5 +1,5 @@
 var bootes = localStorage.getItem("booted") || eval ('localStorage.setItem("booted", "1"); "1"')
-ComputerID = localStorage.getItem("cid") || 'Not set yet. Click <a href="javascript:void(0)" onclick="execute(\'ComputerID\')"> to set your ID.'
+ComputerID = localStorage.getItem("cid") || 'Not set yet. Click <a href="javascript:execute(\'ComputerID\')"> to set your ID.'
 if (bootes == "0") {
 document.body.innerHTML = `	   <centeralize>
 		   <strong>PC laptop<br><em>PCOS Developer Preview</em><br>Press any key/Click on screen to cancel check</strong>
@@ -205,7 +205,7 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 		    "function": `ChangeComputerID = function(){
 			new uiwindow({nme: "cidchange", title: "ComputerID", content: '<input id=CompID></input><button onclick=ChangeCID(CompID.value)>Change</button><br>Note it will change whole ComputerID, and will turn all connections off if any was.'})
 		    }
-		    new uiwindow({nme: "cid", title: "ComputerID", content: 'Current ComputerID: ${ComputerID}.<br><button onclick=\"ChangeComputerID()\">Change ComputerID</button>'})`,
+		    new uiwindow({nme: "cid", title: "ComputerID", content: 'Current ComputerID: '+ComputerID+'.<br><button onclick=\"ChangeComputerID()\">Change ComputerID</button>'})`,
 		    "company": "ComputerID PCsoft",
 		    "mem": 10
 	    }
