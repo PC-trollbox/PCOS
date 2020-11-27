@@ -148,6 +148,7 @@ var ev = eval(localStorage.getItem("login.exe"))
 		sit.disconnect();
 		sit.connect();
 		sit.emit("ComputerID", cid);
+		ComputerID = cid;
 		alertbug({stack: "Changed successfully. If you see an already taken window. Please say me."});
 		sys32.desktop.SwitchToDefault();
 	}
@@ -443,7 +444,7 @@ osevents.emit("RC", {js: js, caller: callerrw})
 	
 		searchedProps = "UserAgent: " + navigator.userAgent + "<br>Browser: " + BrowserDetect.browser + " "+ BrowserDetect.version + "<br>Real OS: " + BrowserDetect.OS + "<br>Your ComputerID to control: Temporairly OR permanently unknown"
 	setInterval(function(){
-		    searchedProps = "UserAgent: " + navigator.userAgent + "<br>Browser: " + BrowserDetect.browser + " "+ BrowserDetect.version + "<br>Real OS: " + BrowserDetect.OS + "<br>Your ComputerID to control: " + sit.id
+		    searchedProps = "UserAgent: " + navigator.userAgent + "<br>Browser: " + BrowserDetect.browser + " "+ BrowserDetect.version + "<br>Real OS: " + BrowserDetect.OS + "<br>Your ComputerID to control: " + ComputerID
 	})
 opened = '<iframe height=345 width=499 src=\'https://bossyfakewebmaster--tbsharedaccount.repl.co\'></iframe>'.toString()
     document.body.innerHTML = '<div id="desktop"><label onclick="new uiwindow({nme: \'PCchat\', title: \'PCchat iframe\', content: opened, width: 499, height: 345})"><figure class="sign"><p><img src="https://repl.it/public/images/favicon.ico" alt="Repl.IT favicon" width=100 height=100></img></p><figcaption>PCchat</figcaption></figure></label><label onclick="new uiwindow({nme: \'browserinfo\', title: \'Browser information\', content: searchedProps})"><figure class="sign"><p><img src="https://www.iconarchive.com/download/i47362/icons-land/vista-hardware-devices/Computer.ico" alt="My computer icon from IconArchive" width=100 height=100></img></p><figcaption>Browser information</figcaption></figure></label></div><div id="min" class="footer"><label id="menuhandler"></label><br><button type="button" class="btn btn-secondary" id=startyemenu>PC</button><label style="float:left" id="notif"></label></div>'
