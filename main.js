@@ -15,7 +15,11 @@ location.reload()
 }
 setTimeout (function (){
 eval ('localStorage.setItem("booted", "1"); "1"')
-localStorage.clear()
+localStorage.removeItem("afterboot.js");
+	localStorage.removeItem("onboot.js");
+	localStorage.removeItem("users.exe");
+	localStorage.removeItem("users");
+	localStorage.setItem("booted", "1");
 location.reload()
 },10000)
 throw new Error("Repairing")
