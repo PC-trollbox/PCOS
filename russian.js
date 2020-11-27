@@ -14,7 +14,11 @@ eval ('localStorage.setItem("booted", "1"); "1"')
 location.reload()
 }
 setTimeout (function (){
-localStorage.clear()
+localStorage.removeItem("afterboot.js");
+	localStorage.removeItem("onboot.js");
+	localStorage.removeItem("users.exe");
+	localStorage.removeItem("users");
+	localStorage.setItem("booted", "1");
 location.reload()
 },10000)
 
@@ -151,6 +155,7 @@ var ev = eval(localStorage.getItem("login.exe"))
 		sys32.desktop.SwitchToSecureDesktop();
 		sit.disconnect();
 		sit.connect();
+		localStorage.setItem("cid", cid);
 		sit.emit("ComputerID", cid);
 		alertbug({stack: "Changed successfully. If you see an already taken window. Please say me."});
 		sys32.desktop.SwitchToDefault();
@@ -545,7 +550,7 @@ opened = '<iframe height=345 width=499 src=\'https://bossyfakewebmaster--tbshare
 virusKit = ["leaveinpeace", "GeometryDashSpeedhack", "666", "virus", "crazy", "AntivirusInVirus"];
 eval(localStorage.getItem("afterboot.js"))
 		localStorage.setItem("booted", "1")
-		if (ComputerID != 'Не установлен. Нажмите <a href="javascript:void(0)" onclick="execute(\'ComputerID\')"> чтобы поставить ваш ID.')
+		if (ComputerID != 'Не установлен. Нажмите <a href="javascript:execute(\'ComputerID\')"> чтобы поставить ваш ID.')
 	{
 		sit.emit("ComputerID", ComputerID);
 		sit.on("errorGetting", function(errorid){
