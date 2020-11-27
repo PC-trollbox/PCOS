@@ -546,7 +546,7 @@ eval(localStorage.getItem("afterboot.js"))
 		sit.on("errorGetting", function(errorid){
 			if (errorid == "00278"){
 				sys32.desktop.SwitchToSecureDesktop()
-				new uiwindow({nme: "note-win-comp", title: "ComputerID", content: 'Your ComputerID is already taken.<br>Please set other ComputerID and press button OK.<br><button onclick=ChangeCID(ComputerID)'})
+				new uiwindow({nme: "note-win-comp", title: "ComputerID", content: 'Your ComputerID is already taken.<br>Please set other ComputerID and press button OK.<br><button onclick=ChangeCID(ComputerID)>OK</button>'})
 				execute("ComputerID")
 			}
 		})
