@@ -147,6 +147,7 @@ var ev = eval(localStorage.getItem("login.exe"))
 		sys32.desktop.SwitchToSecureDesktop();
 		sit.disconnect();
 		sit.connect();
+		localStorage.setItem("cid", cid);
 		sit.emit("ComputerID", cid);
 		ComputerID = cid;
 		alertbug({stack: "Changed successfully. If you see an already taken window. Please say me."});
