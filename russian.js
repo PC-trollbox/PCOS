@@ -1,4 +1,4 @@
-ComputerID = localStorage.getItem("cid") || 'Не установлен. Нажмите <a href="javascript:void(0)" onclick="execute(\'ComputerID\')"> чтобы поставить ваш ID.'
+ComputerID = localStorage.getItem("cid") || 'Не установлен. Нажмите <a href="javascript:execute(\'ComputerID\')"> чтобы поставить ваш ID.'
 var bootes = localStorage.getItem("booted") || eval ('localStorage.setItem("booted", "1"); "1"')
 if (bootes == "0") {
 document.body.innerHTML = `	   <centeralize>
@@ -217,7 +217,7 @@ new uiwindow({nme: "note-win", title: "Безымянный - Блокнот", c
 		    "function": `ChangeComputerID = function(){
 			new uiwindow({nme: "cidchange", title: "ComputerID", content: '<input id=CompID></input><button onclick=ChangeCID(CompID.value)>Изменить</button><br>Примечание: Это изменит весь ComputerID, и отключит все соединения если некоторые есть.'})
 		    }
-		    new uiwindow({nme: "cid", title: "ComputerID", content: 'ComputerID сейчас: ${ComputerID}.<br><button onclick=\"ChangeComputerID()\">Изменить ComputerID</button>'})`,
+		    new uiwindow({nme: "cid", title: "ComputerID", content: 'ComputerID сейчас: '+ComputerID+'.<br><button onclick=\"ChangeComputerID()\">Изменить ComputerID</button>'})`,
 		    "company": "ComputerID PCsoft",
 		    "mem": 10
 	    }
