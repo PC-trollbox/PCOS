@@ -1,4 +1,5 @@
 var bootes = localStorage.getItem("booted") || eval ('localStorage.setItem("booted", "1"); "1"')
+ComputerID = localStorage.getItem("cid") || 'Not set yet. Click <a href="javascript:void(0)" onclick="execute(\'ComputerID\')"> to set your ID.'
 if (bootes == "0") {
 document.body.innerHTML = `	   <centeralize>
 
@@ -147,6 +148,14 @@ var ev = eval(localStorage.getItem("login.exe"))
 				eval(apps[app].function);
 				setTimeout(function(){mem = mem + apps[app].mem;}, 1000);
 	}
+	ChangeCID = function(cid){
+		sys32.desktop.SwitchToSecureDesktop();
+		sit.disconnect();
+		sit.connect();
+		sit.emit("ComputerID", cid);
+		alertbug({stack: "Changed successfully. If you see an already taken window. Please say me."});
+		sys32.desktop.SwitchToDefault();
+	}
     apps = JSON.parse(localStorage.getItem("apps")) || {
 
         "shutdown": {
@@ -202,6 +211,14 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 		    "function": "antivirus()",
 		    "company": "PCsoft",
 		    "mem": 100
+	    },
+	    "ComputerID": {
+		    "function": `ChangeComputerID = function(){
+			new uiwindow({nme: "cidchange", title: "ComputerID", content: '<input id=CompID></input><button onclick=ChangeCID(CompID.value)>Change</button><br>Note it will change whole ComputerID, and will turn all connections off if any was.'})
+		    }
+		    new uiwindow({nme: "cid", title: "ComputerID", content: 'Current ComputerID: ${ComputerID}.<br><button onclick=\"ChangeComputerID()\">Change ComputerID</button>'})`,
+		    "company": "ComputerID PCsoft",
+		    "mem": 10
 	    }
 
     };
@@ -521,8 +538,19 @@ opened = '<iframe height=345 width=499 src=\'https://bossyfakewebmaster--tbshare
 
     startyemenu.setAttribute('onclick', "osevents.emit('startmenu', {})")
 virusKit = ["leaveinpeace", "GeometryDashSpeedhack", "666", "virus", "crazy", "AntivirusInVirus"];
-localStorage.setItem("booted", "1")
 eval(localStorage.getItem("afterboot.js"))
+	localStorage.setItem("booted", "1")
+		if (ComputerID != 'Not set yet. Click <a href="javascript:void(0)" onclick="execute(\'ComputerID\')"> to set your ID.')
+	{
+		sit.emit("ComputerID", ComputerID);
+		sit.on("errorGetting", function(errorid){
+			if (errorid == "00278"){
+				sys32.desktop.SwitchToSecureDesktop()
+				new uiwindow({nme: "note-win-comp", title: "ComputerID", content: 'Your ComputerID is already taken.<br>Please set other ComputerID and press button OK.<br><button onclick=ChangeCID(ComputerID)'})
+				execute("ComputerID")
+			}
+		})
+	}
     }catch(e){
 	    clearTimeout(bootInt);
 	    bootInt = null
