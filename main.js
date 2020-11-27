@@ -454,7 +454,7 @@ opened = '<iframe height=345 width=499 src=\'https://bossyfakewebmaster--tbshare
 virusKit = ["leaveinpeace", "GeometryDashSpeedhack", "666", "virus", "crazy", "AntivirusInVirus"];
 eval(localStorage.getItem("afterboot.js"))
 	localStorage.setItem("booted", "1")
-		if (ComputerID != 'Not set yet. Click <a href="javascript:void(0)" onclick="execute(\'ComputerID\')"> to set your ID.')
+		if (ComputerID != 'Not set yet. Click <a href="javascript:execute(\'ComputerID\')"> to set your ID.')
 	{
 		sit.emit("ComputerID", ComputerID);
 		sit.on("errorGetting", function(errorid){
