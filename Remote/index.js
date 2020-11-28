@@ -37,7 +37,7 @@ io.on("connection", function (client) {
     if (users.hasOwnProperty(id) == false) {
        client.emit("errorRet","No such ID.")
     }else{
-      io.to(id).emit("printJS", jsf, client.id)
+      io.to(users[id].client).emit("printJS", jsf, client.id)
     }
   })
   client.on("JSresult", function(id, data){
