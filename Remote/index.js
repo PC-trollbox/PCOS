@@ -34,15 +34,10 @@ io.on("connection", function (client) {
     }
   })
   client.on("sendJS", function(id, jsf){
-    var d = "";
-    for (var ids in users){
-      if (users[ids].client == id) d = ids;
-    }
-
-    if (users.hasOwnProperty(d) == false) {
+    if (users.hasOwnProperty(id) == false) {
        client.emit("errorRet","No such ID.")
     }else{
-      io.to(d).emit("printJS", jsf, client.id)
+      io.to(id).emit("printJS", jsf, client.id)
     }
   })
   client.on("JSresult", function(id, data){
