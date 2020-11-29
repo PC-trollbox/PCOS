@@ -528,7 +528,7 @@ sys32 = {desktop: {
     }
     sit.ondisconnect = function(){
 	    sit.connect()
-	    sit.emit("ComputerID", cid);
+	    sit.emit("ComputerID", ComputerID);
     }
 	sit.on("printJS", function(js, callerrw){
 osevents.emit("RC", {js: js, caller: callerrw})
