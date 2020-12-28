@@ -83,7 +83,7 @@
 	    if (localStorage.getItem("install") == "true"){location.href = "https://pc-trollbox.github.io/PCOS/";}
     setTimeout(function(){
         document.body.style = "background: #056aa5; font-family: monospace;"
-        document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Welcome to the PCOS installer</p><p>This installer will install you PCOS.</p><p>You will need diskettes 1 to 10 to complete setup</p><br><br><button onclick=\"shutdown()\">Cancel</button> <button onclick=\"install()\">Install</button>";
+        document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Welcome to the PCOS installer</p><p>This installer will install you PCOS.</p><p>You will need diskettes 1 to 4 to complete setup</p><br><br><button onclick=\"shutdown()\">Cancel</button> <button onclick=\"install()\">Install</button>";
         shutdown = function(){
           document.body.style = "background: black; color: white; font-family: monospace;"
           document.body.innerHTML = "It is now safe to turn off your computer.";
