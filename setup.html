@@ -80,6 +80,7 @@
 <footcen>
 </footcen>
     <script type="text/javascript">
+	    if (localStorage.getItem("install") == "true"){location.href = "https://pc-trollbox.github.io/PCOS/";}
     setTimeout(function(){
         document.body.style = "background: #056aa5; font-family: monospace;"
         document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Welcome to the PCOS installer</p><p>This installer will install you PCOS.</p><p>You will need diskettes 1 to 10 to complete setup</p><br><br><button onclick=\"shutdown()\">Cancel</button> <button onclick=\"install()\">Install</button>";
@@ -110,7 +111,9 @@
                             document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Indicator: 100% complete, diskette #4.</p><p>Please delete all diskettes then click OK to reboot PCOS.</p><button onclick=\"ok()\">OK</button>";
                             ok = function(){
                               delete ok;
+				    localStorage.setItem("install", "true")
                               location.href = "https://pc-trollbox.github.io/PCOS/";
+				    
                             }
                           }, 5000)
                         }, 5000)
