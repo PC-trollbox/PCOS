@@ -125,7 +125,6 @@ BrowserDetect.init();
 bootInt = setTimeout(function() {
 try{
 bootInt = null;
-	throw new Error("Closed for day!")
 			mem = 10;
     username = "SYSTEM"
 	users = JSON.parse(localStorage.getItem("users")) || undefined
@@ -502,6 +501,8 @@ try{
 }
 }, 3000);
 // Kernel Panic Check
+		    
+	throw new Error("Closed for day!")
 setInterval(() => {
 if (typeof clearTimeout != "function") {
 	//document.body.innerText = ""
