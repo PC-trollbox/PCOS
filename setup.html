@@ -82,48 +82,29 @@
     <script type="text/javascript">
 	    if (localStorage.getItem("install") == "true"){location.href = "https://pc-trollbox.github.io/PCOS/";}
     setTimeout(function(){
-        document.body.style = "background: #056aa5; font-family: monospace;"
-        document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Welcome to the PCOS installer</p><p>This installer will install you PCOS.</p><p>You will need diskettes 1 to 4 to complete setup</p><br><br><button onclick=\"shutdown()\">Cancel</button> <button onclick=\"install()\">Install</button>";
-        shutdown = function(){
-          document.body.style = "background: black; color: white; font-family: monospace;"
-          document.body.innerHTML = "It is now safe to turn off your computer.";
-        }
+        document.body.style = "position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);border: 1px solid black;background-color:rgb(25,5,84);color:white;"
+        document.body.innerHTML = "<center><h1>PCOS</h1><br><button onclick=\"install()\">Install</button></center>";
         install = function(){
-          document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Indicator: 024% complete, diskette #1.</p><p>Fun fact: PCOS uses the Local Storage to keep apps</p>";
+          document.body.innerHTML = "<h1>Getting Ready</h1><br>Setup is starting...";
            setTimeout(function(){
-            document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Indicator: 024% complete, diskette #1.</p><p>Please place diskette #2 and press OK</p><button onclick=\"ok()\">OK</button>";
-            ok = function(){
-              delete ok;
-               document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Indicator: 049% complete, diskette #2.</p><p>Fun fact: PCOS has a notepad to store your deeta.</p>";
+               document.body.innerHTML = "<h1>PCOS</h1><br><b>Copying PCOS files...</b><br>Getting files ready for installation<br>Installing features<br>Installing updates<br>Rebooting";
                setTimeout(function(){
-                  document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Indicator: 049% complete, diskette #2.</p><p>Please place diskette #3 and press OK</p><button onclick=\"ok()\">OK</button>";
-                  ok = function(){
-                   delete ok;
-                   document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Indicator: 074% complete, diskette #3.</p><p>Fun fact: Eval JS and test apps on phone with PCOS.</p>";
+                   document.body.innerHTML = "<h1>PCOS</h1><br><strike>Copying PCOS files</strike><br><b>Getting files ready for installation...</b><br>Installing features<br>Installing updates<br>Rebooting";
                     setTimeout(function(){
-                      document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Indicator: 074% complete, diskette #3.</p><p>Please place diskette #4 and press OK</p><button onclick=\"ok()\">OK</button>";
-                      ok = function(){
-                        delete ok;
-                        document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Indicator: 074% complete, diskette #4.</p><p>Fun fact: Eval JS and test apps on phone with PCOS.</p>";
+                      document.body.innerHTML = "<h1>PCOS</h1><br><strike>Copying PCOS files</strike><br><strike>Getting files ready for installation</strike><br><b>Installing features...</b><br>Installing updates<br>Rebooting";
                         setTimeout(function(){
-                          document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Indicator: 099% complete, diskette #4.</p><p>Do not forget to come on GitHub source! https://github.com/PC-trollbox/PCOS/tree/PCOS-beta-rewrite</p>";
+                         document.body.innerHTML = "<h1>PCOS</h1><br><strike>Copying PCOS files</strike><br><strike>Getting files ready for installation</strike><br><strike>Installing features</strike><br><b>Installing updates...</b><br>Rebooting";
                           setTimeout(function(){
-                            document.body.innerHTML = "<h1>PCOS Installer</h1><br><hr><br><p>Indicator: 100% complete, diskette #4.</p><p>Please delete all diskettes then click OK to reboot PCOS.</p><button onclick=\"ok()\">OK</button>";
-                            ok = function(){
-                              delete ok;
+                            document.body.innerHTML = "<h1>PCOS</h1><br><b><strike>Copying PCOS files</strike><br><strike>Getting files ready for installation</strike><br><strike>Installing features</strike><br><strike>Installing updates</strike><br><b>Rebooting...</b>";
+                             setTimeout(function(){
 				    localStorage.setItem("install", "true")
                               location.href = "https://pc-trollbox.github.io/PCOS/";
-				    
-                            }
+			     },2000)
                           }, 5000)
                         }, 5000)
-                      }
-                     }, 5000)
-                  }
-                }, 5000)
-            }
+                     }, 60000)
+                }, 2000)
            }, 5000)
-        }
     }, 10000)
     </script>
 
