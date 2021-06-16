@@ -502,7 +502,6 @@ try{
 }, 3000);
 // Kernel Panic Check
 		    
-	throw new Error("Closed for day!")
 setInterval(() => {
 if (typeof clearTimeout != "function") {
 	//document.body.innerText = ""
