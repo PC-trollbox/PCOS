@@ -82,10 +82,10 @@
     <script type="text/javascript">
 	    if (localStorage.getItem("install") == "true"){location.href = "https://pc-trollbox.github.io/PCOS/";}
 setTimeout(function(){
-	document.body.style = "position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);border: 1px solid black;background-color:rgb(25,5,84);color:white;"
+	document.body.style = "position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);background-color:rgb(25,5,84);color:white;font-family: Arial"
 	document.body.innerHTML = "<center><h1>PCOS</h1><br><button onclick=\"install()\">Install</button></center>";
 	install = function(){
-		document.body.innerHTML = "<h1>Getting Ready</h1><br>Setup is starting...";
+		document.body.innerHTML = "<h1>Getting Ready</h1><br><footcen>Setup is starting...</footcen>";
 		setTimeout(function(){
 			document.body.innerHTML = "<h1>PCOS</h1><br><b>Copying PCOS files...</b><br>Getting files ready for installation<br>Installing features<br>Installing updates<br>Rebooting";
 			setTimeout(function(){
