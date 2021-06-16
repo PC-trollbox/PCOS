@@ -519,7 +519,6 @@ if (typeof clearTimeout != "function") {
 	setTimeout(location.reload,3000)
 	
 }})
-		    throw new Error("Closed for day!")
 	    }catch(err){
 		    clearTimeout(bootInt);
 	    bootInt = null
