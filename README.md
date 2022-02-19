@@ -7,13 +7,21 @@ PC OS (my own OS) works WITHOUT ArchEmu
 3. Database Node.JS server (must be initialized)
 ## Command line
 The command arguments can have multiple spaces just like in the regular command lines (`"hello world"` will be one argument, and `hello world` will be two)
+
 `createFolder <folder>` - Create folder. (requires write, doesn't work in RO)
+
 `changeFolder <folder>` - Change folder. (requires read, doesn't work in WO)
+
 `entry <entryName> <entryValue>` - Write to an entry. (requires write, doesn't work in RO)
+
 `remove <entryName or folder>` - Removed an entry or a folder. (requires write, doesn't work in RO)
+
 `read <entryName>` - Read an entry. (requires read, doesn't work in WO)
+
 > What are these RO and WO definitions?
+
 RO means Read-Only, and WO... Write-Only. Write-Only was a [joke](https://en.wikipedia.org/wiki/Write-only_memory_(joke)), but actually [was implemented somewhere](https://en.wikipedia.org/wiki/Write-only_memory_(engineering)).
+
 There's also RW mode, that combined Read and Write. It is Read-Write. This is the most common permission, that is usually set for all files you created on a disk or somewhere.
 ## Server
 ### Initiating
