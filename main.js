@@ -145,15 +145,22 @@ try {
 			bootInt = null;
 			mem = 10;
 			username = "SYSTEM"
-			users = JSON.parse(localStorage.getItem("users")) || undefined
-			if (users !== undefined) {
-				var ev = eval(localStorage.getItem("login.exe"))
-				if (ev !== "log_in" && username == "SYSTEM") {
-					document.body.style = "background: blue; color: white; font-family: monospace;"
-					document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>LOGON_RULES_VIOLATION<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0xl37ogin3<br><br><br>*** login_drv.drv - Address 0x489484648 base at 0x1ead6a9d, DateStamp 0000ab0a<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
-					return
+			db.getItem("users").then(function(data) {
+				users = JSON.parse(data)
+				if (users !== undefined) {
+					db.getItem("login.exe").then(function(data) {
+						var ev = eval(data)
+						if (ev !== "log_in" && username == "SYSTEM") {
+							document.body.style = "background: blue; color: white; font-family: monospace;"
+							document.body.innerHTML = "<strong>A problem has been detected and PCOS has been shut down to prevent damage to your computer.<br>LOGON_RULES_VIOLATION<br><br>If this is the first time you see this Stop screen, restart the computer. If this screen appears again, follow these steps:<br><br>1. Delete the localStorage users file.<br>2. Delete all startup scripts from localStorage (including login.exe!)<br>3. Reload the page and check out if the problem reappears.<br><br>Technical information:<br> *** STOP: 0xl37ogin3<br><br><br>*** login_drv.drv - Address 0x489484648 base at 0x1ead6a9d, DateStamp 0000ab0a<br><br>Beginning dump of psychical memory.<br>Psychical memory dump complete.<br>Contact your system administrator or technical support group for further assistance.</strong>";
+							return
+						}
+					}).catch(function() {
+					});
 				}
-			}
+			}).catch(function() {
+				users = undefined
+			});
 			mem = 1000;
 			execute = function(app) {
 				if (mem == 0) return alertbug({
