@@ -176,7 +176,7 @@ try {
 			db.get("apps").then(function(rd) {
 				apps = JSON.parse(rd);
 			}).catch(function() {
-				apps = || {
+				apps = {
 
 					"shutdown": {
 						"company": "PCsoft",
