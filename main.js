@@ -233,13 +233,14 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 						document.body.style = "background: black; color: white; font-family: monospace;"
 						document.body.innerHTML = "<b>Pre-boot database password entry</b><br>&gt; ";
 						db.setFolder("none");
+						var string = "";
 						onkeypress = async function(e) {
 							if (e.key == "Enter") {
 								if (string == "exit") {
 									onkeypress = null;
 									sys32.desktop.SwitchToDefault();
 								} else {
-									document.body.innerHTML = document.body.innerHTML + "<br>" + (await (await db.rawReq(string)).html()) + "<br>&gt; ";
+									document.body.innerHTML = document.body.innerHTML + "<br>" + (await (await db.rawReq("undefinedhelp")).text()) + "<br>&gt; ";
 								}
 								string = "";
 							} else {
