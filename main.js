@@ -180,8 +180,7 @@ try {
 
 					"shutdown": {
 						"company": "PCsoft",
-						"function": 'osevents.emit("shutoff", "")',
-
+						"function": 'osevents.emit("shutoff", "")'
 						"mem": 0
 					},
 					"eval": {
@@ -227,6 +226,30 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 					`,
 						company: "PCsoft",
 						mem: 0
+					},
+					"terminal": {
+						function: `
+						sys32.desktop.SwitchToSecureDesktop();
+						document.body.style = "background: black; color: white; font-family: monospace;"
+						document.body.innerHTML = "<b>Pre-boot database password entry</b><br>&gt; ";
+						db.setFolder("none");
+						onkeypress = async function(e) {
+							if (e.key == "Enter") {
+								if (string == "exit") {
+									onkeypress = null;
+									sys32.desktop.SwitchToDefault();
+								} else {
+									document.body.innerHTML = document.body.innerHTML + "<br>" + (await (await db.rawReq(string)).html()) + "<br>&gt; ";
+								}
+								string = "";
+							} else {
+								string = string + e.key;
+								document.body.innerHTML = document.body.innerHTML + e.key;
+							}
+						}
+						`,
+						company: "PCsoft",
+						mem: 999
 					}
 				};
 			});
