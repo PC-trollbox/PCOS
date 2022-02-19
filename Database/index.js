@@ -54,8 +54,8 @@ app.get("/requestDB", function(req, res) {
 		res.send("OK");
 	} else if (opts.cmd == "changeFolder") {
 		if (!db.config.mode.includes("r")) return res.status(500).send("The server is not ready to receive read requests.");
-		if (opts.args[0] == "root") db.config.cd = opts.args[0];
-		if (opts.args[0] == "root") return res.send("OK");
+		if (opts.args[0] == "none") db.config.cd = opts.args[0];
+		if (opts.args[0] == "none") return res.send("OK");
 		if (!db.folder().hasOwnProperty(opts.args[0])) return res.status(500).send("The specified file or folder does not exist.");
 		if (typeof db.folder()[opts.args[0]] !== "object") return res.status(500).send("Found a file instead of a folder.");
 		db.config.cd = opts.args[0];
@@ -108,8 +108,8 @@ rl.on('line', (line) => {
 			log("OK");
 		} else if (opts.cmd == "changeFolder") {
 			if (!db.config.mode.includes("r")) return error("The server is not ready to receive read requests.");
-			if (opts.args[0] == "root") db.config.cd = opts.args[0];
-			if (opts.args[0] == "root") return log("OK");
+			if (opts.args[0] == "none") db.config.cd = opts.args[0];
+			if (opts.args[0] == "none") return log("OK");
 			if (!db.folder().hasOwnProperty(opts.args[0])) return error("The specified file or folder does not exist.");
 			if (typeof db.folder()[opts.args[0]] !== "object") return error("Found a file instead of a folder.");
 			db.config.cd = opts.args[0];
