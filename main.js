@@ -1,7 +1,7 @@
 const db = {
 	baseUrl: location.origin.replace(location.port, "1247") + "/requestDB",
 	password: "",
-	folder: "PCOS"
+	folder: "PCOS",
 	setItem: async function(item, data) {
 		await this.setFolder(this.folder);
 		await this.rawReq("entry \"" + item + "\" \"" + data + "\"");
