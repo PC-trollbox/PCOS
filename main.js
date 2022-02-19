@@ -251,7 +251,7 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 							}
 						}
 						onkeydown = function(e) {
-							if (e.key == "Backspace") {
+							if (e.key == "Backspace" && string.length != 0) {
 								var sus = "";
 								for (let amogus in string) {
 									if (sus.length != (string.length - 1)) sus = sus + string[amogus];
