@@ -30,6 +30,8 @@ db.root = JSON.parse(fs.readFileSync(__dirname + "/main.json").toString());
 const express = require('express');
 const app = express();
 const port = 1247;
+const cors = require("cors");
+app.use(cors());
 
 app.get("/requestDB", function(req, res) {
 	if (req.query.pwd != db.config.pass && !db.config.noAdmin) {
