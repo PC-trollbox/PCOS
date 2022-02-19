@@ -22,12 +22,18 @@ Then, install **Node.JS** (with **Node Package Manager (NPM)**).
 Run these commands.
 ```sh
 $ npm init -y # Defines a new project.
+
 ... some project details ...
-$ npm install express # Install our dependencies.
+
+$ npm install express cors # Install our dependencies.
+
 added x packages, and audited x packages in xs
+
 x packages is looking for funding
   run `npm fund` for details
+  
 found 0 vulnerabilities
+
 $ node index.js # And run our script!
 [WARN]  No config detected. A new one will be created.
 [ERR ]  You must change the password!
