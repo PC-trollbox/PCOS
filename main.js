@@ -241,7 +241,7 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 									sys32.desktop.SwitchToDefault();
 								} else {
 									var mh = Math.floor(Math.random() * 10000).toString();
-									document.body.innerHTML = document.body.innerHTML + "<br>" + (await (await db.rawReq(string)).text()) + "<br><label id=\\"" + mh + "\\">&gt; </label>";
+									document.body.innerHTML = document.body.innerHTML + "<br><label id=\\"" + mh + "\\">" + (await (await db.rawReq(string)).text()) + "</label><br>&gt; ";
 									location.hash = mh;
 								}
 								string = "";
