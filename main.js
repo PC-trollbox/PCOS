@@ -231,7 +231,7 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 						function: `
 						sys32.desktop.SwitchToSecureDesktop();
 						document.body.style = "background: black; color: white; font-family: monospace;"
-						document.body.innerHTML = "<b>Database actions</b><br>PCsoft doesn't recommend using this tool if you don't know how the PCOS Database works.<br>To exit type "exit" and press Enter.<br>&gt; ";
+						document.body.innerHTML = "<b>Database actions</b><br>PCsoft doesn't recommend using this tool if you don't know how the PCOS Database works.<br>To exit type \\"exit\\" and press Enter.<br>&gt; ";
 						db.setFolder("none");
 						string = "";
 						onkeypress = async function(e) {
