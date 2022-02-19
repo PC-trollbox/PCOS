@@ -4,7 +4,7 @@ const db = {
 	folder: "PCOS",
 	setItem: async function(item, data) {
 		await this.setFolder(this.folder);
-		await this.rawReq("entry \"" + item + "\" \"" + data + "\"");
+		await this.rawReq("entry \"" + item + "\" " + JSON.stringify(data));
 	},
 	getItem: async function(item) {
 		await this.setFolder(this.folder);
@@ -173,52 +173,64 @@ try {
 					mem = mem + apps[app].mem;
 				}, 1000);
 			}
-			apps = JSON.parse(localStorage.getItem("apps")) || {
+			db.get("apps").then(function(rd) {
+				apps = JSON.parse(rd);
+			}).catch(function() {
+				apps = || {
 
-				"shutdown": {
-					"company": "PCsoft",
-					"function": 'osevents.emit("shutoff", "")',
+					"shutdown": {
+						"company": "PCsoft",
+						"function": 'osevents.emit("shutoff", "")',
 
-					"mem": 0
-				},
-				"eval": {
-					"company": "PCsoft",
-					"function": `
+						"mem": 0
+					},
+					"eval": {
+						"company": "PCsoft",
+						"function": `
 func = function func(){
 try{lastReturn.innerText = String(eval(document.getElementById("evaltext").value))}catch(e){alertbug(e)}
 }
 new uiwindow({nme: "eval-js", title: "Eval JavaScript", content: '<label id=lastReturn>Last Return</label><br><button onclick=func()>Eval</button><br><textarea type="text" size="50" id="evaltext" maxlength="1000000"style="font-family: Arial;font-size: 12pt; width:100%;height:95%"></textarea>'})
 `,
-					"mem": 10
-				},
-				"memory": {
-					"company": "PCsoft",
-					"function": `
+						"mem": 10
+					},
+					"memory": {
+						"company": "PCsoft",
+						"function": `
 new uiwindow({nme: "mem-usage", title: "Memory usage", content: "Memory:<br>"+mem})
 `,
-					"mem": 1
-				},
-				"notepad": {
-					"function": `
+						"mem": 1
+					},
+					"notepad": {
+						"function": `
 Select = function Select(){
 var filename = prompt("Input filename") || "new"
-if (!localStorage.getItem(filename)){
+db.get(filename).then(function(data) {
+document.getElementById("notepadwindowtext").value = localStorage.getItem(data)
+}).catch(function(){
 var sel = confirm("No file called \\"" +filename+"\\" found.\\nCreate one?")
 if (sel) localStorage.setItem(filename, "")
+});
 return "duck"
 }
-document.getElementById("notepadwindowtext").value = localStorage.getItem(filename)
 }
 Save = function Save(){
 var filename = prompt("Input filename") || "new"
-localStorage.setItem(filename, document.getElementById("notepadwindowtext").value)
+db.setItem(filename, document.getElementById("notepadwindowtext").value)
 }
 new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onclick=Select()>Open</button> | <button onclick=Save()>Save as</button><br><textarea type="text" size="50" id="notepadwindowtext" maxlength="1000000"style="font-family: Arial;font-size: 12pt; width:100%;height:95%"></textarea>'})`,
-					"company": "PCsoft",
-					"mem": 5
-				}
-
-			};
+						"company": "PCsoft",
+						"mem": 5
+					},
+					"save-all": {
+						function: `
+					db.setItem("apps", JSON.stringify(apps));
+					`,
+						company: "PCsoft",
+						mem: 0
+					}
+				};
+			});
 			osevents = {
 				on: function(event, callback) {
 					if (typeof event !== "string" && typeof callback !== "function") return "Cannot handle the event callback for the event '" + event + "'."
