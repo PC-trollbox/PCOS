@@ -213,7 +213,6 @@ if (sel) localStorage.setItem(filename, "")
 });
 return "duck"
 }
-}
 Save = function Save(){
 var filename = prompt("Input filename") || "new"
 db.setItem(filename, document.getElementById("notepadwindowtext").value)
