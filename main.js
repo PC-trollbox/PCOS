@@ -469,7 +469,6 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 			document.body.innerHTML = ""
 			document.body.innerHTML = `	   <centeralize>
 		   <strong>PC laptop<br><em>PCOS Database Edition</em></strong>
-<iframe src="https://pcos-remote-control.tbsharedaccount.repl.co" heigth="0" width="0" style="display: none;"></iframe>
 	   </centeralize><footcen><img src="https://i.imgur.com/Hco0aDe.gif" heigth=100 width=100></img><br>Powered by <strong>PCOS</strong></footcen>`
 		} catch (e) {
 			clearTimeout(bootInt);
