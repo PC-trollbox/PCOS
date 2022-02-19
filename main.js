@@ -180,7 +180,7 @@ try {
 
 					"shutdown": {
 						"company": "PCsoft",
-						"function": 'osevents.emit("shutoff", "")'
+						"function": 'osevents.emit("shutoff", "")',
 						"mem": 0
 					},
 					"eval": {
