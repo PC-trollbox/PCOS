@@ -8,11 +8,11 @@ const db = {
 	},
 	getItem: async function(item) {
 		await this.setFolder(this.folder);
-		return await this.rawReq("read \"" + item + "\"");
+		return await (await this.rawReq("read \"" + item + "\"")).text();
 	},
 	removeItem: async function(item) {
 		await this.setFolder(this.folder);
-		return await this.rawReq("remove \"" + item + "\"");
+		await this.rawReq("remove \"" + item + "\"");
 	},
 	rawReq: function(cmd) {
 		return fetch(this.baseUrl + "?pwd=" + encodeURIComponent(this.password) + "&req=" + encodeURIComponent(cmd));
