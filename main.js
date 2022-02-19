@@ -240,7 +240,7 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 									onkeypress = null;
 									sys32.desktop.SwitchToDefault();
 								} else {
-									document.body.innerHTML = document.body.innerHTML + "<br>" + (await (await db.rawReq("undefinedhelp")).text()) + "<br>&gt; ";
+									document.body.innerHTML = document.body.innerHTML + "<br>" + (await (await db.rawReq(string)).text()) + "<br>&gt; ";
 								}
 								string = "";
 							} else {
