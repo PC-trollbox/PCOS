@@ -205,7 +205,7 @@ new uiwindow({nme: "mem-usage", title: "Memory usage", content: "Memory:<br>"+me
 Select = function Select(){
 var filename = prompt("Input filename") || "new"
 db.getItem(filename).then(function(data) {
-document.getElementById("notepadwindowtext").value = localStorage.getItem(data)
+document.getElementById("notepadwindowtext").value = data
 }).catch(function(){
 var sel = confirm("No file called \\"" +filename+"\\" found.\\nCreate one?")
 if (sel) localStorage.setItem(filename, "")
