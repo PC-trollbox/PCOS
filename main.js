@@ -173,7 +173,7 @@ try {
 					mem = mem + apps[app].mem;
 				}, 1000);
 			}
-			db.get("apps").then(function(rd) {
+			db.getItem("apps").then(function(rd) {
 				apps = JSON.parse(rd);
 			}).catch(function() {
 				apps = {
@@ -205,7 +205,7 @@ new uiwindow({nme: "mem-usage", title: "Memory usage", content: "Memory:<br>"+me
 						"function": `
 Select = function Select(){
 var filename = prompt("Input filename") || "new"
-db.get(filename).then(function(data) {
+db.getItem(filename).then(function(data) {
 document.getElementById("notepadwindowtext").value = localStorage.getItem(data)
 }).catch(function(){
 var sel = confirm("No file called \\"" +filename+"\\" found.\\nCreate one?")
