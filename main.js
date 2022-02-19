@@ -233,7 +233,7 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 						document.body.style = "background: black; color: white; font-family: monospace;"
 						document.body.innerHTML = "<b>Pre-boot database password entry</b><br>&gt; ";
 						db.setFolder("none");
-						var string = "";
+						string = "";
 						onkeypress = async function(e) {
 							if (e.key == "Enter") {
 								if (string == "exit") {
