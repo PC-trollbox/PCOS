@@ -240,12 +240,28 @@ new uiwindow({nme: "note-win", title: "Unnamed - Notepad", content: '<button onc
 									onkeypress = null;
 									sys32.desktop.SwitchToDefault();
 								} else {
-									document.body.innerHTML = document.body.innerHTML + "<br>" + (await (await db.rawReq(string)).text()) + "<br>&gt; ";
+									var mh = Math.floor(Math.random() * 10000).toString();
+									document.body.innerHTML = document.body.innerHTML + "<br><label id=\"" + mh + "\">" + (await (await db.rawReq(string)).text()) + "<br>&gt; </label>";
+									location.hash = mh;
 								}
 								string = "";
 							} else {
 								string = string + e.key;
 								document.body.innerHTML = document.body.innerHTML + e.key;
+							}
+						}
+						onkeydown = function(e) {
+							if (e.key == "Backspace") {
+								var sus = "";
+								for (let amogus in string) {
+									if (sus.length != (string.length - 1)) sus = sus + string[amogus];
+								}
+								string = sus;
+								sus = "";
+								for (let amogus in document.body.innerHTML) {
+									if (sus.length != (document.body.innerHTML.length - 1)) sus = sus + document.body.innerHTML[amogus];
+								}
+								document.body.innerHTML = sus;
 							}
 						}
 						`,
