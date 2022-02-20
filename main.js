@@ -25,6 +25,7 @@ const db = {
 			await this.rawReq("remove " + folder);
 			await this.rawReq("createFolder " + folder);
 		}
+		return JSON.parse(await (await this.rawReq("ls")).text());
 	}
 }
 if (!localStorage.getItem("dbpwd")) {
