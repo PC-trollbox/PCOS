@@ -74,6 +74,13 @@ app.get("/requestDB", function(req, res) {
 		if (!db.config.mode.includes("r")) return res.status(500).send("The server is not ready to receive read requests.");
 		if (!db.folder().hasOwnProperty(opts.args[0])) return res.status(500).send("The specified file or folder does not exist.");
 		res.send(db.folder()[opts.args[0]]);
+	} else if (opts.cmd == "ls") {
+		if (!db.config.mode.includes("r")) return res.status(500).send("The server is not ready to receive read requests.");
+		var files = [];
+		for (let sus in db.folder()) {
+			files.push(sus);
+		}
+		res.send(files);
 	} else {
 		res.status(500).send("Invalid database command");
 	}
@@ -128,6 +135,13 @@ rl.on('line', (line) => {
 			if (!db.config.mode.includes("r")) return error("The server is not ready to receive read requests.");
 			if (!db.folder().hasOwnProperty(opts.args[0])) return error("The specified file or folder does not exist.");
 			log(db.folder()[opts.args[0]]);
+		} else if (opts.cmd == "ls") {
+			if (!db.config.mode.includes("r")) return error("The server is not ready to receive read requests.");
+			var files = [];
+			for (let sus in db.folder()) {
+				files.push(sus);
+			}
+			log(files);
 		} else {
 			error("Invalid database command");
 		}
