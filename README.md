@@ -18,6 +18,8 @@ The command arguments can have multiple spaces just like in the regular command 
 
 `read <entryName>` - Read an entry. (requires read, doesn't work in WO)
 
+`ls` - Read current folder contents, computer-readable (requires read, doesn't work in WO)
+
 > What are these RO and WO definitions?
 
 RO means Read-Only, and WO... Write-Only. Write-Only was a [joke](https://en.wikipedia.org/wiki/Write-only_memory_(joke)), but actually [was implemented somewhere](https://en.wikipedia.org/wiki/Write-only_memory_(engineering)).
